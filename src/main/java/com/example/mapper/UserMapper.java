@@ -8,5 +8,6 @@ import org.springframework.stereotype.Service;
 @Mapper
 public interface UserMapper {
     int InsertUser(User params);
+    int UpdateUser(User params);
     User SelectUser(String id);
 }

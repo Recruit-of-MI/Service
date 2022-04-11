@@ -21,15 +21,25 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value= {"createregister"}, method={RequestMethod.POST})
-    public boolean PostUser(@RequestParam("userId") String id,
+    @RequestMapping(value= {"createUser"}, method={RequestMethod.POST})
+    public boolean PostUser(@RequestParam("userID") String id,
                             @RequestParam("userName") String username,
                             @RequestParam("avatarUrl") String avatarurl) {
         User user = new User();
         user.setUserID(id);
         user.setUserName(username);
         user.setAvatarUrl(avatarurl);
-        Boolean result = userService.Ins(user);
-        return result;
+        return userService.Ins(user);
+    }
+    @ResponseBody
+    @RequestMapping(value= {"updateUser"}, method={RequestMethod.PUT})
+    public boolean PutUser(@RequestParam("userID") String id,
+                            @RequestParam("userName") String username,
+                            @RequestParam("avatarUrl") String avatarurl) {
+        User user = new User();
+        user.setUserID(id);
+        user.setUserName(username);
+        user.setAvatarUrl(avatarurl);
+        return userService.Upd(user);
     }
 }

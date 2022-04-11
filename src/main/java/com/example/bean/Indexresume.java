@@ -10,7 +10,8 @@ public class Indexresume {
     private String birthYear;
     private String education;
     private String exPosition;
-    private Integer exSalary;
+    private Integer exSalaryLow;
+    private Integer exSalaryHigh;
     private String workArea;
     private Integer isSecret;
 }

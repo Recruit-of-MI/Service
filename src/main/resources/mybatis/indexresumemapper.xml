@@ -9,13 +9,20 @@
     </resultMap>
 
     <select id="SelectUser" resultType="com.example.bean.Indexresume">
-        select * from indexresume where id = #{id}indexresumemapper.xml
+        select * from indexresume where userID = #{userID}
     </select>
 
     <insert id="InsertUser" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
-        insert into indexresume (userName)
-                         values
-                         (#{userName})
+        insert into indexresume (userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
+        values(#{userID},#{realName},#{phoneNum},#{birthYear},#{education},#{exPosition},#{exSalaryLow},#{exSalaryHigh},#{workArea},#{isSecret})
     </insert>
+
+    <update id="UpdateUser" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
+        update indexresume
+        set realName=#{realName},phoneNum=#{phoneNum},birthYear=#{birthYear},
+        education=#{education},exPosition=#{exPosition},exSalaryLow=#{exSalaryLow},
+        exSalaryHigh=#{exSalaryHigh},workArea=#{workArea},isSecret=#{isSecret}
+        where userID=#{userID};
+    </update>
 
 </mapper>

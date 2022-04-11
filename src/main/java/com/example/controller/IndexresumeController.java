@@ -2,13 +2,10 @@ package com.example.controller;
 
 import com.example.bean.Indexresume;
 import com.example.service.IndexresumeService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/User")
@@ -18,20 +15,60 @@ public class IndexresumeController {
     private IndexresumeService indexresumeService;
 
     @ResponseBody
-    @RequestMapping(value= {"/getIndexresume/{id}"}, method={RequestMethod.GET})
-    public Indexresume GetUser(@PathVariable int id) {
-        Indexresume result = indexresumeService.Sel(id);
-        return result;
+    @RequestMapping(value= {"/getIndexresume"}, method={RequestMethod.GET})
+    public Indexresume GetIndexresume(@RequestParam("userId") String id) {
+        return indexresumeService.Sel(id);
     }
 
     @ResponseBody
-    @RequestMapping(value= {"postIndexresume"}, method={RequestMethod.POST})
-    public boolean PostUser(@RequestBody String params) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode rootNode = mapper.readTree(params);
+    @RequestMapping(value= {"createIndexresume"}, method={RequestMethod.POST})
+    public boolean PostIndexresume(@RequestParam("userID") String id,
+                                   @RequestParam("realName") String realname,
+                                   @RequestParam("phoneNum") String phonenum,
+                                   @RequestParam("birthYear") String birthYear,
+                                   @RequestParam("education") String education,
+                                   @RequestParam("exPosition") String exPosition,
+                                   @RequestParam("exSalaryLow") Integer exSalaryLow,
+                                   @RequestParam("exSalaryLow") Integer exSalaryHigh,
+                                   @RequestParam("exSalaryLow") String workArea,
+                                   @RequestParam("exSalaryLow") Integer isSecret) {
         Indexresume indexresume = new Indexresume();
-        indexresume.setRealName(rootNode.path("userName").asText());
-        Boolean result = indexresumeService.Ins(indexresume);
-        return result;
+        indexresume.setUserID(id);
+        indexresume.setRealName(realname);
+        indexresume.setPhoneNum(phonenum);
+        indexresume.setBirthYear(birthYear);
+        indexresume.setEducation(education);
+        indexresume.setExPosition(exPosition);
+        indexresume.setExSalaryLow(exSalaryLow);
+        indexresume.setExSalaryHigh(exSalaryHigh);
+        indexresume.setWorkArea(workArea);
+        indexresume.setIsSecret(isSecret);
+        return indexresumeService.Ins(indexresume);
+    }
+
+    @ResponseBody
+    @RequestMapping(value= {"updateIndexresume"}, method={RequestMethod.PUT})
+    public boolean PutIndexresume(@RequestParam("userID") String id,
+                                  @RequestParam("realName") String realname,
+                                  @RequestParam("phoneNum") String phonenum,
+                                  @RequestParam("birthYear") String birthYear,
+                                  @RequestParam("education") String education,
+                                  @RequestParam("exPosition") String exPosition,
+                                  @RequestParam("exSalaryLow") Integer exSalaryLow,
+                                  @RequestParam("exSalaryLow") Integer exSalaryHigh,
+                                  @RequestParam("exSalaryLow") String workArea,
+                                  @RequestParam("exSalaryLow") Integer isSecret) {
+        Indexresume indexresume = new Indexresume();
+        indexresume.setUserID(id);
+        indexresume.setRealName(realname);
+        indexresume.setPhoneNum(phonenum);
+        indexresume.setBirthYear(birthYear);
+        indexresume.setEducation(education);
+        indexresume.setExPosition(exPosition);
+        indexresume.setExSalaryLow(exSalaryLow);
+        indexresume.setExSalaryHigh(exSalaryHigh);
+        indexresume.setWorkArea(workArea);
+        indexresume.setIsSecret(isSecret);
+        return indexresumeService.Upd(indexresume);
     }
 }
