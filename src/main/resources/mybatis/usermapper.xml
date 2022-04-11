@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.mapper.userMapper">
+<mapper namespace="com.example.mapper.UserMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.bean.user">
+    <resultMap id="BaseResultMap" type="com.example.bean.User">
         <result column="id" jdbcType="INTEGER" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
     </resultMap>
 
-    <select id="SelectUser" resultType="com.example.bean.user">
-        select * from sender where id = #{id}
+    <select id="SelectUser" resultType="com.example.bean.User">
+        select * from user where userID = #{userId}
     </select>
 
-    <insert id="InsertUser" parameterType="com.example.bean.user" useGeneratedKeys="true" keyProperty="id">
-        insert into sender (userName)
-                         values
-                         (#{userName})
+    <insert id="InsertUser" parameterType="com.example.bean.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(userId,userName,avatarUrl)
+        values(#{userId},#{userName},#{avatarUrl})
     </insert>
 
 </mapper>

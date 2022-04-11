@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.IndexresumeMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.bean.Indexresume">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+    <select id="SelectUser" resultType="com.example.bean.Indexresume">
+        select * from indexresume where id = #{id}indexresumemapper.xml
+    </select>
+
+    <insert id="InsertUser" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
+        insert into indexresume (userName)
+                         values
+                         (#{userName})
+    </insert>
+
+</mapper>
