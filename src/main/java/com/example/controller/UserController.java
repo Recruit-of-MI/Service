@@ -15,7 +15,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value= {"getUser"}, method={RequestMethod.GET})
-    public User GetUser(@RequestParam("userId") String id) {//@PathVariable int id
+    public User GetUser(@RequestParam("userID") String id) {//@PathVariable int id
         User result = userService.Sel(id);
         return result;
     }

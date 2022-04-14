@@ -16,7 +16,7 @@ public class IndexresumeController {
 
     @ResponseBody
     @RequestMapping(value= {"/getIndexresume"}, method={RequestMethod.GET})
-    public Indexresume GetIndexresume(@RequestParam("userId") String id) {
+    public Indexresume GetIndexresume(@RequestParam("userID") String id) {
         return indexresumeService.Sel(id);
     }
 
