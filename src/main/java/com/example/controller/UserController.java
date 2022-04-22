@@ -34,8 +34,8 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value= {"updateUser"}, method={RequestMethod.PUT})
     public boolean PutUser(@RequestParam("userID") String id,
-                            @RequestParam("userName") String username,
-                            @RequestParam("avatarUrl") String avatarurl) {
+                           @RequestParam("userName") String username,
+                           @RequestParam("avatarUrl") String avatarurl) {
         User user = new User();
         user.setUserID(id);
         user.setUserName(username);
