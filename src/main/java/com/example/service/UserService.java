@@ -12,12 +12,12 @@ public class UserService {
     UserMapper userMapper;
 
     public User Sel(String id) {
-        return userMapper.SelectUser(id);
+        return userMapper.Select(id);
     }
 
     public Boolean Ins(User params) {
         try{
-            userMapper.InsertUser(params);
+            userMapper.Insert(params);
             //能获取插入的id是因为UserMapper.xml的insert语句新增了useGeneratedKeys和keyProperty参数
             String insertId = params.getUserID();
             System.out.println("插入数据的ID: " + insertId);
@@ -29,7 +29,7 @@ public class UserService {
     }
     public Boolean Upd(User params) {
         try{
-            userMapper.UpdateUser(params);
+            userMapper.Update(params);
             String insertId = params.getUserID();
             System.out.println("更新数据的ID: " + insertId);
         }

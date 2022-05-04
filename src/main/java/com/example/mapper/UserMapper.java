@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Mapper
 public interface UserMapper {
-    int InsertUser(User params);
-    int UpdateUser(User params);
-    User SelectUser(String id);
+    int Insert(User params);
+    int Update(User params);
+    User Select(String id);
 }

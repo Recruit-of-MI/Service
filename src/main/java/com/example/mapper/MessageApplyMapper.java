@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Mapper
 public interface MessageApplyMapper {
-    int InsertUser(MessageApply params);
-    int UpdateUser(MessageApply params);
-    MessageApply SelectUser(String id);
+    int Insert(MessageApply params);
+    int Update(MessageApply params);
+    MessageApply Select(String id);
 }

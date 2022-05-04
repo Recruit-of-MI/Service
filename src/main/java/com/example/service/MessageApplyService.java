@@ -11,12 +11,12 @@ public class MessageApplyService {
     MessageApplyMapper messageApplyMapper;
 
     public MessageApply Sel(String id) {
-        return messageApplyMapper.SelectUser(id);
+        return messageApplyMapper.Select(id);
     }
 
     public Boolean Ins(MessageApply params) {
         try{
-            messageApplyMapper.InsertUser(params);
+            messageApplyMapper.Insert(params);
             String insertId = params.getUserID();
             System.out.println("插入数据的ID: " + insertId);
         }
@@ -27,7 +27,7 @@ public class MessageApplyService {
     }
     public Boolean Upd(MessageApply params) {
         try{
-            messageApplyMapper.UpdateUser(params);
+            messageApplyMapper.Update(params);
             String insertId = params.getUserID();
             System.out.println("更新数据的ID: " + insertId);
         }

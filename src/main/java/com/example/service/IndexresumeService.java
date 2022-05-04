@@ -12,12 +12,12 @@ public class IndexresumeService {
     IndexresumeMapper indexresumeMapper;
 
     public Indexresume Sel(String id) {
-        return indexresumeMapper.SelectUser(id);
+        return indexresumeMapper.Select(id);
     }
 
     public Boolean Ins(Indexresume params) {
         try{
-            indexresumeMapper.InsertUser(params);
+            indexresumeMapper.Insert(params);
             //能获取插入的id是因为indexresumemapper.xml的insert语句新增了useGeneratedKeys和keyProperty参数
             String insertId = params.getUserID();
             System.out.println("插入数据的ID: " + insertId);
@@ -29,7 +29,7 @@ public class IndexresumeService {
     }
     public Boolean Upd(Indexresume params) {
         try{
-            indexresumeMapper.UpdateUser(params);
+            indexresumeMapper.Update(params);
             String insertId = params.getUserID();
             System.out.println("更新数据的ID: " + insertId);
         }

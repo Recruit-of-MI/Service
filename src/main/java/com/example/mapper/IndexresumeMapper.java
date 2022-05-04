@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Mapper
 public interface IndexresumeMapper {
-    int InsertUser(Indexresume params);
-    int UpdateUser(Indexresume params);
-    Indexresume SelectUser(String id);
+    int Insert(Indexresume params);
+    int Update(Indexresume params);
+    Indexresume Select(String id);
 }
