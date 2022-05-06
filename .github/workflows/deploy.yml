@@ -16,3 +16,4 @@ jobs:
           uses: actions/setup-java@v1  #使用官方脚本创建java环境
           with:
             java-version: 1.8
+        - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print 100 *covered/instructions, "% covered" }' /builds/uino-framework/framework/framework-web/target/site/jacoco/jacoco.csv

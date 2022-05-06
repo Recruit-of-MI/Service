@@ -1,1 +1,4 @@
 # Service
+Build Type                    | Status                                                                                                                                                                           
+----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Linux CPU**                 | [![coverage report](https://git.uino.com/uino-framework/framework/badges/master/coverage.svg)](https://git.uino.com/uino-framework/framework/-/commits/master)          
