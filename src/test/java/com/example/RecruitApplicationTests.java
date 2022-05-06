@@ -8,6 +8,6 @@ class RecruitApplicationTests {
 
     @Test
     void contextLoads() {
+        
     }
-
 }
