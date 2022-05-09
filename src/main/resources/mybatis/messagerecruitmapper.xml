@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.MessageRecruitMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.bean.MessageRecruit">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+    <select id="Select" resultType="com.example.bean.MessageRecruit">
+        select * from messageapply where userID = #{userID}
+    </select>
+
+    <insert id="Insert" parameterType="com.example.bean.MessageRecruit" useGeneratedKeys="true" keyProperty="id">
+        insert into messageapply (userID,otherUserID,otherAvatarUrl,otherUserName,latestMessage)
+        values(#{userID},#{otherUserID},#{otherAvatarUrl},#{otherUserName},#{latestMessage})
+    </insert>
+
+    <update id="Update" parameterType="com.example.bean.MessageRecruit" useGeneratedKeys="true" keyProperty="id">
+        update messageapply
+        set otherUserID=#{otherUserID},otherAvatarUrl=#{otherAvatarUrl},otherUserName=#{otherUserName},
+        latestMessage=#{latestMessage}
+        where userID=#{userID};
+    </update>
+
+</mapper>

@@ -8,16 +8,16 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
     </resultMap>
 
-    <select id="SelectUser" resultType="com.example.bean.Indexresume">
+    <select id="Select" resultType="com.example.bean.Indexresume">
         select * from indexresume where userID = #{userID}
     </select>
 
-    <insert id="InsertUser" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
         insert into indexresume (userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
         values(#{userID},#{realName},#{phoneNum},#{birthYear},#{education},#{exPosition},#{exSalaryLow},#{exSalaryHigh},#{workArea},#{isSecret})
     </insert>
 
-    <update id="UpdateUser" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
         update indexresume
         set realName=#{realName},phoneNum=#{phoneNum},birthYear=#{birthYear},
         education=#{education},exPosition=#{exPosition},exSalaryLow=#{exSalaryLow},
