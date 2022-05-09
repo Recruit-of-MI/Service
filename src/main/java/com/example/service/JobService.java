@@ -1,22 +1,22 @@
 package com.example.service;
 
-import com.example.bean.MessageRecruit;
-import com.example.mapper.MessageRecruitMapper;
+import com.example.bean.Job;
+import com.example.mapper.JobMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MessageRecruitService {
+public class JobService {
     @Autowired
-    MessageRecruitMapper messageRecruitMapper;
+    JobMapper jobMapper;
 
-    public MessageRecruit Sel(String id) {
-        return messageRecruitMapper.Select(id);
+    public Job Sel() {
+        return jobMapper.Select();
     }
 
-    public Boolean Ins(MessageRecruit params) {
+    public Boolean Ins(Job params) {
         try{
-            messageRecruitMapper.Insert(params);
+            jobMapper.Insert(params);
             String insertId = params.getUserID();
             System.out.println("插入数据的ID: " + insertId);
         }
@@ -25,9 +25,9 @@ public class MessageRecruitService {
         }
         return true;
     }
-    public Boolean Upd(MessageRecruit params) {
+    public Boolean Upd(Job params) {
         try{
-            messageRecruitMapper.Update(params);
+            jobMapper.Update(params);
             String insertId = params.getUserID();
             System.out.println("更新数据的ID: " + insertId);
         }

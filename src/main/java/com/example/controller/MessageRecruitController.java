@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/Message")
+@RequestMapping("/message/recruit")
 public class MessageRecruitController {
     @Autowired
     private MessageRecruitService messageRecruitService;
 
     @ResponseBody
-    @RequestMapping(value= {"/getMessageRecruit"}, method={RequestMethod.GET})
+    @RequestMapping(value= {"/show"}, method={RequestMethod.GET})
     public MessageRecruit GetIndexresume(@RequestParam("userID") String id) {
         return messageRecruitService.Sel(id);
     }

@@ -9,16 +9,16 @@
     </resultMap>
 
     <select id="Select" resultType="com.example.bean.MessageRecruit">
-        select * from messageapply where userID = #{userID}
+        select * from messagerecruit where userID = #{userID}
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.MessageRecruit" useGeneratedKeys="true" keyProperty="id">
-        insert into messageapply (userID,otherUserID,otherAvatarUrl,otherUserName,latestMessage)
+        insert into messagerecruit (userID,otherUserID,otherAvatarUrl,otherUserName,latestMessage)
         values(#{userID},#{otherUserID},#{otherAvatarUrl},#{otherUserName},#{latestMessage})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.MessageRecruit" useGeneratedKeys="true" keyProperty="id">
-        update messageapply
+        update messagerecruit
         set otherUserID=#{otherUserID},otherAvatarUrl=#{otherAvatarUrl},otherUserName=#{otherUserName},
         latestMessage=#{latestMessage}
         where userID=#{userID};

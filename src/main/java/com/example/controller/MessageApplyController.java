@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/Message")
+@RequestMapping("/message/apply")
 public class MessageApplyController {
     @Autowired
     private MessageApplyService messageApplyService;
 
     @ResponseBody
-    @RequestMapping(value= {"/getMessageApply"}, method={RequestMethod.GET})
+    @RequestMapping(value= {"/show"}, method={RequestMethod.GET})
     public MessageApply GetIndexresume(@RequestParam("userID") String id) {
         return messageApplyService.Sel(id);
     }

@@ -13,7 +13,7 @@
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
-        insert into indexresume (userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
+        insert into indexresume(userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
         values(#{userID},#{realName},#{phoneNum},#{birthYear},#{education},#{exPosition},#{exSalaryLow},#{exSalaryHigh},#{workArea},#{isSecret})
     </insert>
 
