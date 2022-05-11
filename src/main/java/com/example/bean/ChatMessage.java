@@ -3,7 +3,7 @@ package com.example.bean;
 import lombok.Data;
 
 @Data
-public class SpecificChatMessage {
+public class ChatMessage {
     private String userID;
     private String otherUserID;
     private String avatarUrl;

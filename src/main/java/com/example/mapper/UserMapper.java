@@ -9,5 +9,5 @@ import org.springframework.stereotype.Service;
 public interface UserMapper {
     int Insert(User params);
     int Update(User params);
-    User Select(String id);
+    User Select(String userID);
 }

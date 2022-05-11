@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.bean.Indexresume;
-import com.example.service.IndexresumeService;
+import com.example.bean.Resume;
+import com.example.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/User")
-public class IndexresumeController {
+public class ResumeController {
 
     @Autowired
-    private IndexresumeService indexresumeService;
+    private ResumeService resumeService;
 
     @ResponseBody
-    @RequestMapping(value= {"/getIndexresume"}, method={RequestMethod.GET})
-    public Indexresume GetIndexresume(@RequestParam("userID") String id) {
-        return indexresumeService.Sel(id);
+    @RequestMapping(value= {"/getResume"}, method={RequestMethod.GET})
+    public Resume GetIndexresume(@RequestParam("userID") String id) {
+        return resumeService.Sel(id);
     }
 
     @ResponseBody
-    @RequestMapping(value= {"createIndexresume"}, method={RequestMethod.POST})
+    @RequestMapping(value= {"createResume"}, method={RequestMethod.POST})
     public boolean PostIndexresume(@RequestParam("userID") String id,
                                    @RequestParam("realName") String realname,
                                    @RequestParam("phoneNum") String phonenum,
@@ -32,22 +32,22 @@ public class IndexresumeController {
                                    @RequestParam("exSalaryLow") Integer exSalaryHigh,
                                    @RequestParam("exSalaryLow") String workArea,
                                    @RequestParam("exSalaryLow") Integer isSecret) {
-        Indexresume indexresume = new Indexresume();
-        indexresume.setUserID(id);
-        indexresume.setRealName(realname);
-        indexresume.setPhoneNum(phonenum);
-        indexresume.setBirthYear(birthYear);
-        indexresume.setEducation(education);
-        indexresume.setExPosition(exPosition);
-        indexresume.setExSalaryLow(exSalaryLow);
-        indexresume.setExSalaryHigh(exSalaryHigh);
-        indexresume.setWorkArea(workArea);
-        indexresume.setIsSecret(isSecret);
-        return indexresumeService.Ins(indexresume);
+        Resume resume = new Resume();
+        resume.setUserID(id);
+        resume.setRealName(realname);
+        resume.setPhoneNum(phonenum);
+        resume.setBirthYear(birthYear);
+        resume.setEducation(education);
+        resume.setExPosition(exPosition);
+        resume.setExSalaryLow(exSalaryLow);
+        resume.setExSalaryHigh(exSalaryHigh);
+        resume.setWorkArea(workArea);
+        resume.setIsSecret(isSecret);
+        return resumeService.Ins(resume);
     }
 
     @ResponseBody
-    @RequestMapping(value= {"updateIndexresume"}, method={RequestMethod.PUT})
+    @RequestMapping(value= {"updateResume"}, method={RequestMethod.PUT})
     public boolean PutIndexresume(@RequestParam("userID") String id,
                                   @RequestParam("realName") String realname,
                                   @RequestParam("phoneNum") String phonenum,
@@ -58,17 +58,17 @@ public class IndexresumeController {
                                   @RequestParam("exSalaryLow") Integer exSalaryHigh,
                                   @RequestParam("exSalaryLow") String workArea,
                                   @RequestParam("exSalaryLow") Integer isSecret) {
-        Indexresume indexresume = new Indexresume();
-        indexresume.setUserID(id);
-        indexresume.setRealName(realname);
-        indexresume.setPhoneNum(phonenum);
-        indexresume.setBirthYear(birthYear);
-        indexresume.setEducation(education);
-        indexresume.setExPosition(exPosition);
-        indexresume.setExSalaryLow(exSalaryLow);
-        indexresume.setExSalaryHigh(exSalaryHigh);
-        indexresume.setWorkArea(workArea);
-        indexresume.setIsSecret(isSecret);
-        return indexresumeService.Upd(indexresume);
+        Resume resume = new Resume();
+        resume.setUserID(id);
+        resume.setRealName(realname);
+        resume.setPhoneNum(phonenum);
+        resume.setBirthYear(birthYear);
+        resume.setEducation(education);
+        resume.setExPosition(exPosition);
+        resume.setExSalaryLow(exSalaryLow);
+        resume.setExSalaryHigh(exSalaryHigh);
+        resume.setWorkArea(workArea);
+        resume.setIsSecret(isSecret);
+        return resumeService.Upd(resume);
     }
 }

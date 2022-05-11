@@ -1,24 +1,24 @@
 package com.example.service;
 
-import com.example.bean.Indexresume;
-import com.example.mapper.IndexresumeMapper;
+import com.example.bean.Resume;
+import com.example.mapper.ResumeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IndexresumeService {
+public class ResumeService {
 
     @Autowired
-    IndexresumeMapper indexresumeMapper;
+    ResumeMapper resumeMapper;
 
-    public Indexresume Sel(String id) {
-        return indexresumeMapper.Select(id);
+    public Resume Sel(String id) {
+        return resumeMapper.Select(id);
     }
 
-    public Boolean Ins(Indexresume params) {
+    public Boolean Ins(Resume params) {
         try{
-            indexresumeMapper.Insert(params);
-            //能获取插入的id是因为indexresumemapper.xml的insert语句新增了useGeneratedKeys和keyProperty参数
+            resumeMapper.Insert(params);
+            //能获取插入的id是因为resumemapper.xml的insert语句新增了useGeneratedKeys和keyProperty参数
             String insertId = params.getUserID();
             System.out.println("插入数据的ID: " + insertId);
         }
@@ -27,9 +27,9 @@ public class IndexresumeService {
         }
         return true;
     }
-    public Boolean Upd(Indexresume params) {
+    public Boolean Upd(Resume params) {
         try{
-            indexresumeMapper.Update(params);
+            resumeMapper.Update(params);
             String insertId = params.getUserID();
             System.out.println("更新数据的ID: " + insertId);
         }

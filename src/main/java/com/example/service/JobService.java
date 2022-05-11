@@ -4,14 +4,19 @@ import com.example.bean.Job;
 import com.example.mapper.JobMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class JobService {
     @Autowired
     JobMapper jobMapper;
 
-    public Job Sel() {
-        return jobMapper.Select();
+    public List<Job> Search() {
+        return jobMapper.SelectAll();
+    }
+
+    public Job Sel(int jobID) {
+        return jobMapper.Sel(jobID);
     }
 
     public Boolean Ins(Job params) {

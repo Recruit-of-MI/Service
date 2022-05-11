@@ -3,7 +3,7 @@ package com.example.bean;
 import lombok.Data;
 
 @Data
-public class Indexresume {
+public class Resume {
     private String userID;
     private String realName;
     private String phoneNum;

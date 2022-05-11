@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.mapper.IndexresumeMapper">
+<mapper namespace="com.example.mapper.ResumeMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.bean.Indexresume">
+    <resultMap id="BaseResultMap" type="com.example.bean.Resume">
         <result column="id" jdbcType="INTEGER" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
     </resultMap>
 
-    <select id="Select" resultType="com.example.bean.Indexresume">
-        select * from indexresume where userID = #{userID}
+    <select id="Select" resultType="com.example.bean.Resume">
+        select * from resume where userID = #{userID}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
-        insert into indexresume(userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
+    <insert id="Insert" parameterType="com.example.bean.Resume" useGeneratedKeys="true" keyProperty="id">
+        insert into resume(userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
         values(#{userID},#{realName},#{phoneNum},#{birthYear},#{education},#{exPosition},#{exSalaryLow},#{exSalaryHigh},#{workArea},#{isSecret})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.Indexresume" useGeneratedKeys="true" keyProperty="id">
-        update indexresume
+    <update id="Update" parameterType="com.example.bean.Resume" useGeneratedKeys="true" keyProperty="id">
+        update resume
         set realName=#{realName},phoneNum=#{phoneNum},birthYear=#{birthYear},
         education=#{education},exPosition=#{exPosition},exSalaryLow=#{exSalaryLow},
         exSalaryHigh=#{exSalaryHigh},workArea=#{workArea},isSecret=#{isSecret}

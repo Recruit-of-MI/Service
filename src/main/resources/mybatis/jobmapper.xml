@@ -8,8 +8,12 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
     </resultMap>
 
-    <select id="Select" resultType="com.example.bean.Job">
+    <select id="SelectAll" resultType="com.example.bean.Job">
         select * from job
+    </select>
+
+    <select id="Sel" resultType="com.example.bean.Job">
+        select * from job where jobID = #{jobID}
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.Job" useGeneratedKeys="true" keyProperty="id">

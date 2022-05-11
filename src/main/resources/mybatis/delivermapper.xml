@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.DeliverMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.bean.Deliver">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+    <select id="Select" resultType="com.example.bean.Deliver">
+        select * from deliver where userID = #{id}
+    </select>
+
+    <select id="Sel" resultType="com.example.bean.Job">
+        select * from job where jobID = #{jobID}
+    </select>
+
+    <insert id="Insert" parameterType="com.example.bean.Deliver" useGeneratedKeys="true" keyProperty="id">
+        insert into deliver(userID)
+        values(#{id})
+    </insert>
+
+    <update id="Update" parameterType="com.example.bean.Deliver" useGeneratedKeys="true" keyProperty="id">
+        update deliver
+        set
+        where userID=#{id}
+    </update>
+
+</mapper>
