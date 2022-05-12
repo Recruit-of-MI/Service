@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class CollectedJob {
     private String userID;
-    private String jobID;
+    private Integer jobID;
     private String createTime;
 }

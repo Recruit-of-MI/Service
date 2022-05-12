@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import com.example.bean.Deliver;
+import com.example.bean.CollectedJob;
 import com.example.bean.Job;
-import com.example.service.DeliverService;
+import com.example.service.CollectedJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,17 +14,17 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/recruit")
-public class DeliverController {
+public class CollectedJobController {
     @Autowired
-    private DeliverService deliverService;
+    private CollectedJobService collectedJobService;
 
     @ResponseBody
-    @RequestMapping(value= {"/getDelivered"}, method={RequestMethod.GET})
+    @RequestMapping(value= {"/getCollect"}, method={RequestMethod.GET})
     public List<Job> GetDelivered(@RequestParam("userID") String id) {
-        List<Deliver> delivers=deliverService.Select(id);
+        List<CollectedJob> collectedJobs=collectedJobService.Select(id);
         List<Job> jobs=new ArrayList<>();
-        for (Deliver deliver:delivers) {
-            jobs.add(deliverService.Sel(deliver.getJobID()));
+        for (CollectedJob collectedJob:collectedJobs) {
+            jobs.add(collectedJobService.Sel(collectedJob.getJobID()));
         }
         return jobs;
     }

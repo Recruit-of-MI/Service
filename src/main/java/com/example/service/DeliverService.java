@@ -5,7 +5,6 @@ import com.example.bean.Job;
 import com.example.mapper.DeliverMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
