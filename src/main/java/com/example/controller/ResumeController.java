@@ -17,7 +17,7 @@ public class ResumeController {
     @ResponseBody
     @RequestMapping(value= {"/getResume"}, method={RequestMethod.GET})
     public Resume GetIndexresume(@RequestParam("userID") String id) {
-        return resumeService.Sel(id);
+        return resumeService.Select(id);
     }
 
     @ResponseBody
@@ -43,7 +43,7 @@ public class ResumeController {
         resume.setExSalaryHigh(exSalaryHigh);
         resume.setWorkArea(workArea);
         resume.setIsSecret(isSecret);
-        return resumeService.Ins(resume);
+        return resumeService.Insert(resume);
     }
 
     @ResponseBody
@@ -69,6 +69,6 @@ public class ResumeController {
         resume.setExSalaryHigh(exSalaryHigh);
         resume.setWorkArea(workArea);
         resume.setIsSecret(isSecret);
-        return resumeService.Upd(resume);
+        return resumeService.Update(resume);
     }
 }

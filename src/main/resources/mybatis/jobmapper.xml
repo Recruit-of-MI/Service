@@ -12,7 +12,7 @@
         select * from job
     </select>
 
-    <select id="Sel" resultType="com.example.bean.Job">
+    <select id="Select" resultType="com.example.bean.Job">
         select * from job where jobID = #{jobID}
     </select>
 

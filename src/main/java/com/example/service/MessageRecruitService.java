@@ -1,20 +1,33 @@
 package com.example.service;
 
 import com.example.bean.MessageRecruit;
+import com.example.config.RedisConstant;
 import com.example.mapper.MessageRecruitMapper;
+import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 @Service
 public class MessageRecruitService {
     @Autowired
     MessageRecruitMapper messageRecruitMapper;
 
-    public MessageRecruit Sel(String id) {
-        return messageRecruitMapper.Select(id);
+    @Autowired
+    private RedisUtil redisUtil;
+
+    public List<MessageRecruit> Select(String id) {
+        List<MessageRecruit> messageRecruits=(List<MessageRecruit>) redisUtil.get(RedisConstant.MESSAGE_RECRUIT_KEY+id);
+        if(CollectionUtils.isEmpty(messageRecruits)){
+            messageRecruits= messageRecruitMapper.Select(id);
+            redisUtil.set(RedisConstant.MESSAGE_RECRUIT_KEY+id,messageRecruits);
+        }
+        return messageRecruits;
     }
 
-    public Boolean Ins(MessageRecruit params) {
+    public Boolean Insert(MessageRecruit params) {
         try{
             messageRecruitMapper.Insert(params);
             String insertId = params.getUserID();
@@ -25,7 +38,7 @@ public class MessageRecruitService {
         }
         return true;
     }
-    public Boolean Upd(MessageRecruit params) {
+    public Boolean Update(MessageRecruit params) {
         try{
             messageRecruitMapper.Update(params);
             String insertId = params.getUserID();

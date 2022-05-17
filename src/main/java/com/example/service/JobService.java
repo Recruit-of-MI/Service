@@ -1,9 +1,13 @@
 package com.example.service;
 
 import com.example.bean.Job;
+import com.example.config.RedisConstant;
 import com.example.mapper.JobMapper;
+import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
 import java.util.List;
 
 @Service
@@ -11,15 +15,28 @@ public class JobService {
     @Autowired
     JobMapper jobMapper;
 
-    public List<Job> Search() {
-        return jobMapper.SelectAll();
+    @Autowired
+    private RedisUtil redisUtil;
+
+    public List<Job> SelectAll() {
+        List<Job> jobs=(List<Job>) redisUtil.get(RedisConstant.JOB_KEY);
+        if(CollectionUtils.isEmpty(jobs)){
+            jobs= jobMapper.SelectAll();
+            redisUtil.set(RedisConstant.JOB_KEY,jobs);
+        }
+        return jobs;
     }
 
-    public Job Sel(int jobID) {
-        return jobMapper.Sel(jobID);
+    public Job Select(int jobID) {
+        Job job=(Job) redisUtil.get(RedisConstant.JOB_KEY+jobID);
+        if(job==null){
+            job=jobMapper.Select(jobID);
+            redisUtil.set(RedisConstant.JOB_KEY+jobID,job);
+        }
+        return job;
     }
 
-    public Boolean Ins(Job params) {
+    public Boolean Insert(Job params) {
         try{
             jobMapper.Insert(params);
             String insertId = params.getUserID();
@@ -30,7 +47,7 @@ public class JobService {
         }
         return true;
     }
-    public Boolean Upd(Job params) {
+    public Boolean Update(Job params) {
         try{
             jobMapper.Update(params);
             String insertId = params.getUserID();

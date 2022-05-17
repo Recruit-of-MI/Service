@@ -3,18 +3,23 @@ package com.example.controller;
 import com.example.bean.Deliver;
 import com.example.bean.Job;
 import com.example.service.DeliverService;
+import com.example.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/recruit")
 public class DeliverController {
+    @Resource
+    private JobService jobService;
+
     @Autowired
     private DeliverService deliverService;
 
@@ -24,7 +29,7 @@ public class DeliverController {
         List<Deliver> delivers=deliverService.Select(id);
         List<Job> jobs=new ArrayList<>();
         for (Deliver deliver:delivers) {
-            jobs.add(deliverService.Sel(deliver.getJobID()));
+            jobs.add(jobService.Select(deliver.getJobID()));
         }
         return jobs;
     }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/message/recruit")
 public class MessageRecruitController {
@@ -17,7 +19,7 @@ public class MessageRecruitController {
 
     @ResponseBody
     @RequestMapping(value= {"/show"}, method={RequestMethod.GET})
-    public MessageRecruit GetIndexresume(@RequestParam("userID") String id) {
-        return messageRecruitService.Sel(id);
+    public List<MessageRecruit> GetIndexresume(@RequestParam("userID") String id) {
+        return messageRecruitService.Select(id);
     }
 }

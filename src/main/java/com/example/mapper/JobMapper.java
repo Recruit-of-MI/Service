@@ -11,5 +11,5 @@ public interface JobMapper {
     int Insert(Job params);
     int Update(Job params);
     List<Job> SelectAll();
-    Job Sel(int jobID);
+    Job Select(int jobID);
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/message/apply")
 public class MessageApplyController {
@@ -17,7 +19,7 @@ public class MessageApplyController {
 
     @ResponseBody
     @RequestMapping(value= {"/show"}, method={RequestMethod.GET})
-    public MessageApply GetIndexresume(@RequestParam("userID") String id) {
-        return messageApplyService.Sel(id);
+    public List<MessageApply> GetIndexresume(@RequestParam("userID") String id) {
+        return messageApplyService.Select(id);
     }
 }

@@ -16,7 +16,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value= {"getUser"}, method={RequestMethod.GET})
     public User GetUser(@RequestParam("userID") String id) {//@PathVariable int id
-        return userService.Sel(id);
+        return userService.Select(id);
     }
 
     @ResponseBody
@@ -28,7 +28,7 @@ public class UserController {
         user.setUserID(id);
         user.setUserName(username);
         user.setAvatarUrl(avatarurl);
-        return userService.Ins(user);
+        return userService.Insert(user);
     }
     @ResponseBody
     @RequestMapping(value= {"updateUser"}, method={RequestMethod.PUT})
@@ -39,6 +39,6 @@ public class UserController {
         user.setUserID(id);
         user.setUserName(username);
         user.setAvatarUrl(avatarurl);
-        return userService.Upd(user);
+        return userService.Update(user);
     }
 }

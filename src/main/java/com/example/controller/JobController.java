@@ -19,6 +19,6 @@ public class JobController {
     @ResponseBody
     @RequestMapping(value= {"/getJob"}, method={RequestMethod.GET})
     public List<Job> GetJob() {
-        return jobService.Search();
+        return jobService.SelectAll();
     }
 }

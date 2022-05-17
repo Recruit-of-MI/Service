@@ -12,10 +12,6 @@
         select * from deliver where userID = #{id}
     </select>
 
-    <select id="Sel" resultType="com.example.bean.Job">
-        select * from job where jobID = #{jobID}
-    </select>
-
     <insert id="Insert" parameterType="com.example.bean.Deliver" useGeneratedKeys="true" keyProperty="id">
         insert into deliver(userID)
         values(#{id})
