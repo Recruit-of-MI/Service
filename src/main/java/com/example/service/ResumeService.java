@@ -38,6 +38,7 @@ public class ResumeService {
         return true;
     }
     public Boolean Update(Resume params) {
+        redisUtil.del(RedisConstant.RESUME_KEY+params.getUserID());
         try{
             resumeMapper.Update(params);
             String insertId = params.getUserID();

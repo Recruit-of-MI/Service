@@ -38,6 +38,7 @@ public class UserService {
         return true;
     }
     public Boolean Update(User params) {
+        redisUtil.del(RedisConstant.USER_KEY+params.getUserID());
         try{
             userMapper.Update(params);
             String insertId = params.getUserID();

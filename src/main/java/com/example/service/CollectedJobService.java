@@ -25,5 +25,29 @@ public class CollectedJobService {
         }
         return collectedJobs;
     }
+    public Boolean Insert(CollectedJob params) {
+        redisUtil.del(RedisConstant.COLLECT_KEY+params.getUserID());
+        try{
+            collectedJobMapper.Insert(params);
+            String insertId = params.getUserID();
+            System.out.println("插入数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public Boolean Update(CollectedJob params) {
+        redisUtil.del(RedisConstant.COLLECT_KEY+params.getUserID());
+        try{
+            collectedJobMapper.Update(params);
+            String insertId = params.getUserID();
+            System.out.println("更新数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
+    }
 
 }

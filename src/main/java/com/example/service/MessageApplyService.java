@@ -7,7 +7,6 @@ import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 import java.util.List;
 
 @Service
@@ -28,6 +27,7 @@ public class MessageApplyService {
     }
 
     public Boolean Insert(MessageApply params) {
+        redisUtil.del(RedisConstant.MESSAGE_APPLY_KEY+params.getUserID());
         try{
             messageApplyMapper.Insert(params);
             String insertId = params.getUserID();
@@ -39,6 +39,7 @@ public class MessageApplyService {
         return true;
     }
     public Boolean Update(MessageApply params) {
+        redisUtil.del(RedisConstant.MESSAGE_APPLY_KEY+params.getUserID());
         try{
             messageApplyMapper.Update(params);
             String insertId = params.getUserID();

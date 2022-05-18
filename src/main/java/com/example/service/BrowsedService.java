@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class BrowsedService {
     @Autowired
-    private BrowsedMapper BrowsedMapper;
+    private BrowsedMapper browsedMapper;
 
     @Autowired
     private RedisUtil redisUtil;
@@ -20,9 +20,33 @@ public class BrowsedService {
     public List<Browsed> Select(String id) {
         List<Browsed> browseds=(List<Browsed>) redisUtil.get(RedisConstant.BROSE_KEY+id);
         if(CollectionUtils.isEmpty(browseds)){
-            browseds=BrowsedMapper.Select(id);
+            browseds=browsedMapper.Select(id);
             redisUtil.set(RedisConstant.BROSE_KEY+id,browseds);
         }
         return browseds;
+    }
+    public Boolean Insert(Browsed params) {
+        redisUtil.del(RedisConstant.BROSE_KEY+params.getUserID());
+        try{
+            browsedMapper.Insert(params);
+            String insertId = params.getUserID();
+            System.out.println("插入数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public Boolean Update(Browsed params) {
+        redisUtil.del(RedisConstant.BROSE_KEY+params.getUserID());
+        try{
+            browsedMapper.Update(params);
+            String insertId = params.getUserID();
+            System.out.println("更新数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }

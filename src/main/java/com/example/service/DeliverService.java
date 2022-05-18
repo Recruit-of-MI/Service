@@ -25,5 +25,29 @@ public class DeliverService {
         }
         return delivers;
     }
+    public Boolean Insert(Deliver params) {
+        redisUtil.del(RedisConstant.DELIVER_KEY+params.getUserID());
+        try{
+            deliverMapper.Insert(params);
+            String insertId = params.getUserID();
+            System.out.println("插入数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public Boolean Update(Deliver params) {
+        redisUtil.del(RedisConstant.DELIVER_KEY+params.getUserID());
+        try{
+            deliverMapper.Update(params);
+            String insertId = params.getUserID();
+            System.out.println("更新数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
+    }
 
 }
