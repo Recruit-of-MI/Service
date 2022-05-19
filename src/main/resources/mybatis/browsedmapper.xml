@@ -9,18 +9,18 @@
     </resultMap>
 
     <select id="Select" resultType="com.example.bean.Browsed">
-        select * from browsed where userID = #{id}
+        select * from browsed where userID = #{userID}
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.Browsed" useGeneratedKeys="true" keyProperty="id">
-        insert into browsed(userID)
-        values(#{id})
+        insert into browsed(userID,jobID)
+        values(#{userID},#{jobID})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.Browsed" useGeneratedKeys="true" keyProperty="id">
         update browsed
-        set
-        where userID=#{id}
+        set jobID=#{jobID}
+        where userID=#{userID}
     </update>
 
 </mapper>

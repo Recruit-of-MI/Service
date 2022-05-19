@@ -27,7 +27,7 @@ class RecruitApplicationTests {
     private UserService userService;
 
     @Test
-    void BrosePostTest() {
-        assertTrue()
+    void BroseTest() {
+        assertTrue(true);
     }
 }

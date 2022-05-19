@@ -9,18 +9,18 @@
     </resultMap>
 
     <select id="Select" resultType="com.example.bean.CollectedJob">
-        select * from collectedjob where userID = #{id}
+        select * from collectedjob where userID = #{userID}
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.CollectedJob" useGeneratedKeys="true" keyProperty="id">
-        insert into collectedjob(userID)
-        values(#{id})
+        insert into collectedjob(userID,jobID)
+        values(#{userID},#{jobID})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.CollectedJob" useGeneratedKeys="true" keyProperty="id">
         update collectedjob
-        set
-        where userID=#{id}
+        set jobID=#{jobID}
+        where userID=#{userID}
     </update>
 
 </mapper>

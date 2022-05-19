@@ -9,18 +9,18 @@
     </resultMap>
 
     <select id="Select" resultType="com.example.bean.Deliver">
-        select * from deliver where userID = #{id}
+        select * from deliver where userID = #{userID}
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.Deliver" useGeneratedKeys="true" keyProperty="id">
-        insert into deliver(userID)
-        values(#{id})
+        insert into deliver(userID,jobID)
+        values(#{userID},#{jobID})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.Deliver" useGeneratedKeys="true" keyProperty="id">
         update deliver
-        set
-        where userID=#{id}
+        set jobID=#{jobID}
+        where userID=#{userID}
     </update>
 
 </mapper>
