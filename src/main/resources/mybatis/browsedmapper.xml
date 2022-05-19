@@ -12,12 +12,12 @@
         select * from browsed where userID = #{userID}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.Browsed" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.Browsed">
         insert into browsed(userID,jobID)
         values(#{userID},#{jobID})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.Browsed" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.Browsed">
         update browsed
         set jobID=#{jobID}
         where userID=#{userID}

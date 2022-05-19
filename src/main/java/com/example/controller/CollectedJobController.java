@@ -36,23 +36,19 @@ public class CollectedJobController {
     @ResponseBody
     @RequestMapping(value= {"/createCollect"}, method={RequestMethod.POST})
     public boolean PostUser(@RequestParam("jobID") Integer jobID,
-                            @RequestParam("userID") String userID,
-                            @RequestParam("createTime") String createTime) {
+                            @RequestParam("userID") String userID) {
         CollectedJob collectedJob = new CollectedJob();
         collectedJob.setJobID(jobID);
         collectedJob.setUserID(userID);
-        collectedJob.setCreateTime(createTime);
         return collectedJobService.Insert(collectedJob);
     }
     @ResponseBody
     @RequestMapping(value= {"/updateCollect"}, method={RequestMethod.PUT})
     public boolean PutUser(@RequestParam("jobID") Integer jobID,
-                           @RequestParam("userID") String userID,
-                           @RequestParam("createTime") String createTime) {
+                           @RequestParam("userID") String userID) {
         CollectedJob collectedJob = new CollectedJob();
         collectedJob.setJobID(jobID);
         collectedJob.setUserID(userID);
-        collectedJob.setCreateTime(createTime);
         return collectedJobService.Update(collectedJob);
     }
 }

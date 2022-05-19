@@ -36,23 +36,19 @@ public class BrowsedController {
     @ResponseBody
     @RequestMapping(value= {"/createBrowsed"}, method={RequestMethod.POST})
     public boolean PostUser(@RequestParam("jobID") Integer jobID,
-                            @RequestParam("userID") String userID,
-                            @RequestParam("createTime") String createTime) {
+                            @RequestParam("userID") String userID) {
         Browsed browsed = new Browsed();
         browsed.setJobID(jobID);
         browsed.setUserID(userID);
-        browsed.setCreateTime(createTime);
         return browsedService.Insert(browsed);
     }
     @ResponseBody
     @RequestMapping(value= {"/updateBrowsed"}, method={RequestMethod.PUT})
     public boolean PutUser(@RequestParam("jobID") Integer jobID,
-                           @RequestParam("userID") String userID,
-                           @RequestParam("createTime") String createTime) {
+                           @RequestParam("userID") String userID) {
         Browsed browsed = new Browsed();
         browsed.setJobID(jobID);
         browsed.setUserID(userID);
-        browsed.setCreateTime(createTime);
         return browsedService.Update(browsed);
     }
 }

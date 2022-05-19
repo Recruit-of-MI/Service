@@ -12,12 +12,12 @@
         select * from user where userID = #{userId}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.User">
         insert into user(userID,userName,avatarUrl)
         values(#{userID},#{userName},#{avatarUrl})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.User" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.User">
         update user
         set userName=#{userName},avatarUrl=#{avatarUrl}
         where userID=#{userID}

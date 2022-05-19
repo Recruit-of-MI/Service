@@ -12,12 +12,12 @@
         select * from messageapply where userID = #{userID}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.MessageApply" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.MessageApply">
         insert into messageapply (userID,otherUserID,otherAvatarUrl,otherUserName,latestMessage)
         values(#{userID},#{otherUserID},#{otherAvatarUrl},#{otherUserName},#{latestMessage})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.MessageApply" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.MessageApply">
         update messageapply
         set otherUserID=#{otherUserID},otherAvatarUrl=#{otherAvatarUrl},otherUserName=#{otherUserName},
         latestMessage=#{latestMessage}

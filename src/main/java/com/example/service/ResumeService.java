@@ -33,6 +33,7 @@ public class ResumeService {
             System.out.println("插入数据的ID: " + insertId);
         }
         catch (Exception e){
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -45,6 +46,7 @@ public class ResumeService {
             System.out.println("更新数据的ID: " + insertId);
         }
         catch (Exception e){
+            e.printStackTrace();
             return false;
         }
         return true;

@@ -12,12 +12,12 @@
         select * from collectedjob where userID = #{userID}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.CollectedJob" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.CollectedJob">
         insert into collectedjob(userID,jobID)
         values(#{userID},#{jobID})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.CollectedJob" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.CollectedJob">
         update collectedjob
         set jobID=#{jobID}
         where userID=#{userID}

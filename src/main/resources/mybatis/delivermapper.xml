@@ -12,12 +12,12 @@
         select * from deliver where userID = #{userID}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.Deliver" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.Deliver">
         insert into deliver(userID,jobID)
         values(#{userID},#{jobID})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.Deliver" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.Deliver">
         update deliver
         set jobID=#{jobID}
         where userID=#{userID}

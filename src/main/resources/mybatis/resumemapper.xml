@@ -12,12 +12,12 @@
         select * from resume where userID = #{userID}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.Resume" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.Resume">
         insert into resume(userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
         values(#{userID},#{realName},#{phoneNum},#{birthYear},#{education},#{exPosition},#{exSalaryLow},#{exSalaryHigh},#{workArea},#{isSecret})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.Resume" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.Resume">
         update resume
         set realName=#{realName},phoneNum=#{phoneNum},birthYear=#{birthYear},
         education=#{education},exPosition=#{exPosition},exSalaryLow=#{exSalaryLow},

@@ -16,12 +16,12 @@
         select * from job where jobID = #{jobID}
     </select>
 
-    <insert id="Insert" parameterType="com.example.bean.Job" useGeneratedKeys="true" keyProperty="id">
+    <insert id="Insert" parameterType="com.example.bean.Job">
         insert into job(jobName,jobHighSalary,jobLowSalary,jobPlace,education,jobType,userID,jobDescribe,jobWelfare,avatarUrl)
         values(#{jobName},#{jobHighSalary},#{jobLowSalary},#{jobPlace},#{education},#{jobType},#{userID},#{jobDescribe},#{jobWelfare},#{avatarUrl})
     </insert>
 
-    <update id="Update" parameterType="com.example.bean.Job" useGeneratedKeys="true" keyProperty="id">
+    <update id="Update" parameterType="com.example.bean.Job">
         update job
         set jobName=#{jobName},jobHighSalary=#{jobHighSalary},
         jobLowSalary=#{jobLowSalary},jobPlace=#{jobPlace},
