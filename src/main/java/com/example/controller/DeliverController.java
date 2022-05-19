@@ -33,4 +33,26 @@ public class DeliverController {
         }
         return jobs;
     }
+    @ResponseBody
+    @RequestMapping(value= {"/createDelivered"}, method={RequestMethod.POST})
+    public boolean PostUser(@RequestParam("jobID") Integer jobID,
+                            @RequestParam("userID") String userID,
+                            @RequestParam("createTime") String createTime) {
+        Deliver deliver = new Deliver();
+        deliver.setJobID(jobID);
+        deliver.setUserID(userID);
+        deliver.setCreateTime(createTime);
+        return deliverService.Insert(deliver);
+    }
+    @ResponseBody
+    @RequestMapping(value= {"/updateDelivered"}, method={RequestMethod.PUT})
+    public boolean PutUser(@RequestParam("jobID") Integer jobID,
+                           @RequestParam("userID") String userID,
+                           @RequestParam("createTime") String createTime) {
+        Deliver deliver = new Deliver();
+        deliver.setJobID(jobID);
+        deliver.setUserID(userID);
+        deliver.setCreateTime(createTime);
+        return deliverService.Update(deliver);
+    }
 }

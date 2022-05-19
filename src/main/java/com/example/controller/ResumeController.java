@@ -21,7 +21,7 @@ public class ResumeController {
     }
 
     @ResponseBody
-    @RequestMapping(value= {"createResume"}, method={RequestMethod.POST})
+    @RequestMapping(value= {"/createResume"}, method={RequestMethod.POST})
     public boolean PostIndexresume(@RequestParam("userID") String id,
                                    @RequestParam("realName") String realname,
                                    @RequestParam("phoneNum") String phonenum,
@@ -47,7 +47,7 @@ public class ResumeController {
     }
 
     @ResponseBody
-    @RequestMapping(value= {"updateResume"}, method={RequestMethod.PUT})
+    @RequestMapping(value= {"/updateResume"}, method={RequestMethod.PUT})
     public boolean PutIndexresume(@RequestParam("userID") String id,
                                   @RequestParam("realName") String realname,
                                   @RequestParam("phoneNum") String phonenum,

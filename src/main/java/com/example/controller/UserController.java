@@ -14,13 +14,13 @@ public class UserController {
     private UserService userService;
 
     @ResponseBody
-    @RequestMapping(value= {"getUser"}, method={RequestMethod.GET})
+    @RequestMapping(value= {"/getUser"}, method={RequestMethod.GET})
     public User GetUser(@RequestParam("userID") String id) {//@PathVariable int id
         return userService.Select(id);
     }
 
     @ResponseBody
-    @RequestMapping(value= {"createUser"}, method={RequestMethod.POST})
+    @RequestMapping(value= {"/createUser"}, method={RequestMethod.POST})
     public boolean PostUser(@RequestParam("userID") String id,
                             @RequestParam("userName") String username,
                             @RequestParam("avatarUrl") String avatarurl) {
@@ -31,7 +31,7 @@ public class UserController {
         return userService.Insert(user);
     }
     @ResponseBody
-    @RequestMapping(value= {"updateUser"}, method={RequestMethod.PUT})
+    @RequestMapping(value= {"/updateUser"}, method={RequestMethod.PUT})
     public boolean PutUser(@RequestParam("userID") String id,
                            @RequestParam("userName") String username,
                            @RequestParam("avatarUrl") String avatarurl) {

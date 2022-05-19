@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +25,34 @@ public class CollectedJobController {
 
     @ResponseBody
     @RequestMapping(value= {"/getCollect"}, method={RequestMethod.GET})
-    public List<Job> GetDelivered(@RequestParam("userID") String id) {
+    public List<Job> GetcollectedJobed(@RequestParam("userID") String id) {
         List<CollectedJob> collectedJobs=collectedJobService.Select(id);
         List<Job> jobs=new ArrayList<>();
         for (CollectedJob collectedJob:collectedJobs) {
             jobs.add(jobService.Select(collectedJob.getJobID()));
         }
         return jobs;
+    }
+    @ResponseBody
+    @RequestMapping(value= {"/createCollect"}, method={RequestMethod.POST})
+    public boolean PostUser(@RequestParam("jobID") Integer jobID,
+                            @RequestParam("userID") String userID,
+                            @RequestParam("createTime") String createTime) {
+        CollectedJob collectedJob = new CollectedJob();
+        collectedJob.setJobID(jobID);
+        collectedJob.setUserID(userID);
+        collectedJob.setCreateTime(createTime);
+        return collectedJobService.Insert(collectedJob);
+    }
+    @ResponseBody
+    @RequestMapping(value= {"/updateCollect"}, method={RequestMethod.PUT})
+    public boolean PutUser(@RequestParam("jobID") Integer jobID,
+                           @RequestParam("userID") String userID,
+                           @RequestParam("createTime") String createTime) {
+        CollectedJob collectedJob = new CollectedJob();
+        collectedJob.setJobID(jobID);
+        collectedJob.setUserID(userID);
+        collectedJob.setCreateTime(createTime);
+        return collectedJobService.Update(collectedJob);
     }
 }
