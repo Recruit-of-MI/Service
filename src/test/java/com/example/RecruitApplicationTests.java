@@ -67,9 +67,9 @@ class RecruitApplicationTests {
         job.setJobName("老师");
         job.setJobLowSalary(4000);
         job.setUserID("123456a");
-        assertEquals(false,jobService.Insert(job));
+        assertEquals(true,jobService.Insert(job));
         job=jobService.Select(1);
-        assertEquals(true,jobService.Update(job));
+        assertEquals(false,jobService.Update(job));
         assertEquals(job,jobService.Select(1));
     }
     @Test
@@ -78,7 +78,7 @@ class RecruitApplicationTests {
         MessageApply messageApply = tem.size()>0?tem.get(0):new MessageApply();
         messageApply.setOtherUserID("deliver1");
         messageApply.setUserID("123455a");
-        assertEquals(false,messageApplyService.Insert(messageApply));
+        assertEquals(true,messageApplyService.Insert(messageApply));
         messageApply=messageApplyService.Select("123455a").get(0);
         assertEquals(true,messageApplyService.Update(messageApply));
         assertEquals(messageApply,messageApplyService.Select("123455a").get(0));
@@ -89,7 +89,7 @@ class RecruitApplicationTests {
         MessageRecruit messageRecruit = tem.size()>0?tem.get(0):new MessageRecruit();
         messageRecruit.setUserID("deliver1");
         messageRecruit.setOtherUserID("123455a");
-        assertEquals(false,messageRecruitService.Insert(messageRecruit));
+        assertEquals(true,messageRecruitService.Insert(messageRecruit));
         messageRecruit=messageRecruitService.Select("deliver1").get(0);
         assertEquals(true,messageRecruitService.Update(messageRecruit));
         assertEquals(messageRecruit,messageRecruitService.Select("deliver1").get(0));
@@ -101,7 +101,7 @@ class RecruitApplicationTests {
         resume.setRealName("王安");
         assertEquals(false,resumeService.Insert(resume));
         resume=resumeService.Select("deliver1");
-        assertEquals(true,resumeService.Update(resume));
+        assertEquals(false,resumeService.Update(resume));
         assertEquals(resume,resumeService.Select("deliver1"));
     }
     @Test
