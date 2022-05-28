@@ -16,19 +16,21 @@
         select * from job where jobID = #{jobID}
     </select>
 
+
     <insert id="Insert" parameterType="com.example.bean.Job">
-        insert into job(jobName,jobHighSalary,jobLowSalary,jobPlace,education,jobType,userID,jobDescribe,jobWelfare,avatarUrl)
-        values(#{jobName},#{jobHighSalary},#{jobLowSalary},#{jobPlace},#{education},#{jobType},#{userID},#{jobDescribe},#{jobWelfare},#{avatarUrl})
+        insert into job(recruitPosition,jobTitle,maxWages,minWages,region,specificLocation,corporateName,minEducation,mode,jobDescription,recruitNum,
+        userID,publisherName,publisherAvatarUrl,welfare1,welfare2,welfare3,welfare4,welfare5,label1,label2,label3)
+        values(#{recruitPosition},#{jobTitle},#{maxWages},#{minWages},#{region},#{specificLocation},#{corporateName},#{minEducation},#{mode},#{jobDescription},
+        #{recruitNum},#{userID},#{publisherName},#{publisherAvatarUrl},#{welfare1},#{welfare2},#{welfare3},#{welfare4},#{welfare5},#{label1},#{label2},#{label3})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.Job">
         update job
-        set jobName=#{jobName},jobHighSalary=#{jobHighSalary},
-        jobLowSalary=#{jobLowSalary},jobPlace=#{jobPlace},
-        education=#{education},jobType=#{jobType},
-        userID=#{userID},jobDescribe=#{jobDescribe},
-        jobWelfare=#{jobWelfare},avatarUrl=#{avatarUrl}
-        where ID=#{ID}
+        set recruitPosition=#{recruitPosition},jobTitle=#{jobTitle},maxWages=#{maxWages},minWages=#{minWages},region=#{region},
+        specificLocation=#{specificLocation},corporateName=#{corporateName},minEducation=#{minEducation},mode=#{mode},jobDescription=#{jobDescription},
+        recruitNum=#{recruitNum},userID=#{userID},publisherName=#{publisherName},publisherAvatarUrl=#{publisherAvatarUrl},welfare1=#{welfare1},
+        welfare2=#{welfare2},welfare3=#{welfare3},welfare4=#{welfare4},welfare5=#{welfare5},label1=#{label1},label2=#{label2},label3=#{label3}
+        where jobID=#{jobID}
     </update>
 
 </mapper>

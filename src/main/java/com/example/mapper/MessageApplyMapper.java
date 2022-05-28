@@ -11,5 +11,6 @@ import java.util.List;
 public interface MessageApplyMapper {
     int Insert(MessageApply params);
     int Update(MessageApply params);
-    List<MessageApply> Select(String id);
+    int Delete(Integer ID);
+    List<MessageApply> Select(String userID);
 }

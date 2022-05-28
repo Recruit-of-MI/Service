@@ -3,6 +3,7 @@ package com.example.config;
 public class RedisConstant {
     public static String USER_KEY="User";
     public static String BROSE_KEY="Brose";
+    public static String CHAT_KEY="Chat";
     public static String COLLECT_KEY="Collect";
     public static String DELIVER_KEY="Deliver";
     public static String JOB_KEY="Job";

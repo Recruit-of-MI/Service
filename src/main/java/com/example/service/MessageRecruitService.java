@@ -52,4 +52,15 @@ public class MessageRecruitService {
         }
         return true;
     }
+    public Boolean Delete(int ID) {
+        redisUtil.del(RedisConstant.MESSAGE_RECRUIT_KEY+ID);
+        try{
+            messageRecruitMapper.Delete(ID);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

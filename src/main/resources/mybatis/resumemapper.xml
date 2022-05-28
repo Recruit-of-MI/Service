@@ -13,15 +13,15 @@
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.Resume">
-        insert into resume(userID,realName,phoneNum,birthYear,education,exPosition,exSalaryLow,exSalaryHigh,workArea,isSecret)
-        values(#{userID},#{realName},#{phoneNum},#{birthYear},#{education},#{exPosition},#{exSalaryLow},#{exSalaryHigh},#{workArea},#{isSecret})
+        insert into resume(userID,realName,phoneNum,birthYear,education,workYear,intentionJob,privacy)
+        values(#{userID},#{realName},#{phoneNum},#{birthYear},#{education},#{workYear},#{intentionJob},#{privacy})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.Resume">
         update resume
         set realName=#{realName},phoneNum=#{phoneNum},birthYear=#{birthYear},
-        education=#{education},exPosition=#{exPosition},exSalaryLow=#{exSalaryLow},
-        exSalaryHigh=#{exSalaryHigh},workArea=#{workArea},isSecret=#{isSecret}
+        education=#{education},workYear=#{workYear},
+        intentionJob=#{intentionJob},privacy=#{privacy}
         where userID=#{userID};
     </update>
 

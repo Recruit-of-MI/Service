@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 
 @Controller
@@ -19,37 +18,46 @@ public class MessageApplyController {
 
     @ResponseBody
     @RequestMapping(value= {"/getApply"}, method={RequestMethod.GET})
-    public List<MessageApply> GetIndexresume(@RequestParam("userID") String id) {
+    public List<MessageApply> GetMessageApplyList(@RequestParam("userID") String id) {
         return messageApplyService.Select(id);
     }
     @ResponseBody
     @RequestMapping(value= {"/createApply"}, method={RequestMethod.POST})
-    public boolean PostUser(@RequestParam("userID") String id,
-                            @RequestParam("otherUserID") String otherUserID,
+    public boolean PostMessageApply(@RequestParam("userID") String userID,
+                            @RequestParam("otherID") String otherID,
                             @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                             @RequestParam("otherUserName") String otherUserName,
-                            @RequestParam("latestMessage") String latestMessage) {
+                            @RequestParam("latestMessage") String latestMessage,
+                            @RequestParam("latestMessageTime") String latestMessageTime) {
         MessageApply messageApply = new MessageApply();
-        messageApply.setUserID(id);
-        messageApply.setOtherUserID(otherUserID);
+        messageApply.setUserID(userID);
+        messageApply.setOtherID(otherID);
         messageApply.setOtherAvatarUrl(otherAvatarUrl);
         messageApply.setOtherUserName(otherUserName);
         messageApply.setLatestMessage(latestMessage);
+        messageApply.setLatestMessageTime(latestMessageTime);
         return messageApplyService.Insert(messageApply);
     }
     @ResponseBody
     @RequestMapping(value= {"/updateApply"}, method={RequestMethod.PUT})
-    public boolean PutUser(@RequestParam("userID") String id,
-                           @RequestParam("otherUserID") String otherUserID,
+    public boolean PutMessageApply(@RequestParam("userID") String userID,
+                           @RequestParam("otherID") String otherID,
                            @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                            @RequestParam("otherUserName") String otherUserName,
-                           @RequestParam("latestMessage") String latestMessage) {
+                           @RequestParam("latestMessage") String latestMessage,
+                           @RequestParam("latestMessageTime") String latestMessageTime) {
         MessageApply messageApply = new MessageApply();
-        messageApply.setUserID(id);
-        messageApply.setOtherUserID(otherUserID);
+        messageApply.setUserID(userID);
+        messageApply.setOtherID(otherID);
         messageApply.setOtherAvatarUrl(otherAvatarUrl);
         messageApply.setOtherUserName(otherUserName);
         messageApply.setLatestMessage(latestMessage);
+        messageApply.setLatestMessageTime(latestMessageTime);
         return messageApplyService.Update(messageApply);
+    }
+    @ResponseBody
+    @RequestMapping(value= {"/deleteApply"}, method={RequestMethod.DELETE})
+    public boolean DelMessageApply(@RequestParam("ID") Integer ID){
+        return messageApplyService.Delete(ID);
     }
 }

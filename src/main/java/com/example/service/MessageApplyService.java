@@ -52,4 +52,15 @@ public class MessageApplyService {
         }
         return true;
     }
+    public Boolean Delete(int ID) {
+        redisUtil.del(RedisConstant.MESSAGE_APPLY_KEY+ID);
+        try{
+            messageApplyMapper.Delete(ID);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

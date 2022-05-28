@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -64,8 +63,8 @@ class RecruitApplicationTests {
     @Test
     void JobTest() {
         Job job = jobService.Select(1);
-        job.setJobName("老师");
-        job.setJobLowSalary(4000);
+        job.setRecruitPosition("老师");
+        job.setMinWages(4000);
         job.setUserID("123456a");
         assertEquals(true,jobService.Insert(job));
         job=jobService.Select(1);
@@ -76,7 +75,7 @@ class RecruitApplicationTests {
     void MessageApplyTest() {
         List<MessageApply> tem=messageApplyService.Select("123455a");
         MessageApply messageApply = tem.size()>0?tem.get(0):new MessageApply();
-        messageApply.setOtherUserID("deliver1");
+        messageApply.setOtherID("deliver1");
         messageApply.setUserID("123455a");
         assertEquals(true,messageApplyService.Insert(messageApply));
         messageApply=messageApplyService.Select("123455a").get(0);
@@ -88,7 +87,7 @@ class RecruitApplicationTests {
         List<MessageRecruit> tem=messageRecruitService.Select("deliver1");
         MessageRecruit messageRecruit = tem.size()>0?tem.get(0):new MessageRecruit();
         messageRecruit.setUserID("deliver1");
-        messageRecruit.setOtherUserID("123455a");
+        messageRecruit.setOtherID("123455a");
         assertEquals(true,messageRecruitService.Insert(messageRecruit));
         messageRecruit=messageRecruitService.Select("deliver1").get(0);
         assertEquals(true,messageRecruitService.Update(messageRecruit));

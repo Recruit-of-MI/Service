@@ -14,6 +14,9 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+class JobIfAgreed extends Job{
+    public int isAgree;
+}
 @Controller
 @RequestMapping("/recruit")
 public class DeliverController {
@@ -25,11 +28,13 @@ public class DeliverController {
 
     @ResponseBody
     @RequestMapping(value= {"/getDelivered"}, method={RequestMethod.GET})
-    public List<Job> GetDelivered(@RequestParam("userID") String id) {
+    public List<JobIfAgreed> GetDelivered(@RequestParam("userID") String id) {
         List<Deliver> delivers=deliverService.Select(id);
-        List<Job> jobs=new ArrayList<>();
+        List<JobIfAgreed> jobs=new ArrayList<>();
         for (Deliver deliver:delivers) {
-            jobs.add(jobService.Select(deliver.getJobID()));
+            JobIfAgreed jobIfAgreed= (JobIfAgreed) jobService.Select(deliver.getJobID());
+            jobIfAgreed.isAgree=deliver.getIsAgree();
+            jobs.add(jobIfAgreed);
         }
         return jobs;
     }

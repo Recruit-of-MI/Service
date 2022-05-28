@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class ResumeController {
 
     @Autowired
@@ -16,59 +16,51 @@ public class ResumeController {
 
     @ResponseBody
     @RequestMapping(value= {"/getResume"}, method={RequestMethod.GET})
-    public Resume GetIndexresume(@RequestParam("userID") String id) {
+    public Resume GetResume(@RequestParam("userID") String id) {
         return resumeService.Select(id);
     }
 
     @ResponseBody
     @RequestMapping(value= {"/createResume"}, method={RequestMethod.POST})
-    public boolean PostIndexresume(@RequestParam("userID") String id,
+    public boolean PostResume(@RequestParam("userID") String userID,
                                    @RequestParam("realName") String realname,
                                    @RequestParam("phoneNum") String phonenum,
                                    @RequestParam("birthYear") String birthYear,
                                    @RequestParam("education") String education,
-                                   @RequestParam("exPosition") String exPosition,
-                                   @RequestParam("exSalaryLow") Integer exSalaryLow,
-                                   @RequestParam("exSalaryLow") Integer exSalaryHigh,
-                                   @RequestParam("exSalaryLow") String workArea,
-                                   @RequestParam("exSalaryLow") Integer isSecret) {
+                                   @RequestParam("workYear") String workYear,
+                                   @RequestParam("intentionJob") String intentionJob,
+                                   @RequestParam("exSalaryLow") Integer privacy) {
         Resume resume = new Resume();
-        resume.setUserID(id);
+        resume.setUserID(userID);
         resume.setRealName(realname);
         resume.setPhoneNum(phonenum);
         resume.setBirthYear(birthYear);
         resume.setEducation(education);
-        resume.setExPosition(exPosition);
-        resume.setExSalaryLow(exSalaryLow);
-        resume.setExSalaryHigh(exSalaryHigh);
-        resume.setWorkArea(workArea);
-        resume.setIsSecret(isSecret);
+        resume.setWorkYear(workYear);
+        resume.setIntentionJob(intentionJob);
+        resume.setPrivacy(privacy);
         return resumeService.Insert(resume);
     }
 
     @ResponseBody
     @RequestMapping(value= {"/updateResume"}, method={RequestMethod.PUT})
-    public boolean PutIndexresume(@RequestParam("userID") String id,
+    public boolean PutResume(@RequestParam("userID") String userID,
                                   @RequestParam("realName") String realname,
                                   @RequestParam("phoneNum") String phonenum,
                                   @RequestParam("birthYear") String birthYear,
                                   @RequestParam("education") String education,
-                                  @RequestParam("exPosition") String exPosition,
-                                  @RequestParam("exSalaryLow") Integer exSalaryLow,
-                                  @RequestParam("exSalaryLow") Integer exSalaryHigh,
-                                  @RequestParam("exSalaryLow") String workArea,
-                                  @RequestParam("exSalaryLow") Integer isSecret) {
+                                  @RequestParam("workYear") String workYear,
+                                  @RequestParam("intentionJob") String intentionJob,
+                                  @RequestParam("exSalaryLow") Integer privacy) {
         Resume resume = new Resume();
-        resume.setUserID(id);
+        resume.setUserID(userID);
         resume.setRealName(realname);
         resume.setPhoneNum(phonenum);
         resume.setBirthYear(birthYear);
         resume.setEducation(education);
-        resume.setExPosition(exPosition);
-        resume.setExSalaryLow(exSalaryLow);
-        resume.setExSalaryHigh(exSalaryHigh);
-        resume.setWorkArea(workArea);
-        resume.setIsSecret(isSecret);
+        resume.setWorkYear(workYear);
+        resume.setIntentionJob(intentionJob);
+        resume.setPrivacy(privacy);
         return resumeService.Update(resume);
     }
 }

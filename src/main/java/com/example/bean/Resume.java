@@ -9,9 +9,7 @@ public class Resume {
     private String phoneNum;
     private String birthYear;
     private String education;
-    private String exPosition;
-    private Integer exSalaryLow;
-    private Integer exSalaryHigh;
-    private String workArea;
-    private Integer isSecret;
+    private String workYear;
+    private String intentionJob;
+    private Integer privacy;
 }

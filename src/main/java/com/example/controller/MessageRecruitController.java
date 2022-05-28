@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 
 @Controller
@@ -19,37 +18,46 @@ public class MessageRecruitController {
 
     @ResponseBody
     @RequestMapping(value= {"/getRecruit"}, method={RequestMethod.GET})
-    public List<MessageRecruit> GetIndexresume(@RequestParam("userID") String id) {
+    public List<MessageRecruit> GetMessageRecruitList(@RequestParam("userID") String id) {
         return messageRecruitService.Select(id);
     }
     @ResponseBody
     @RequestMapping(value= {"/createRecruit"}, method={RequestMethod.POST})
-    public boolean PostUser(@RequestParam("userID") String id,
-                            @RequestParam("otherUserID") String otherUserID,
+    public boolean PostMessageRecruit(@RequestParam("userID") String userID,
+                            @RequestParam("otherID") String otherID,
                             @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                             @RequestParam("otherUserName") String otherUserName,
-                            @RequestParam("latestMessage") String latestMessage) {
+                            @RequestParam("latestMessage") String latestMessage,
+                            @RequestParam("latestMessageTime") String latestMessageTime) {
         MessageRecruit messageRecruit = new MessageRecruit();
-        messageRecruit.setUserID(id);
-        messageRecruit.setOtherUserID(otherUserID);
+        messageRecruit.setUserID(userID);
+        messageRecruit.setOtherID(otherID);
         messageRecruit.setOtherAvatarUrl(otherAvatarUrl);
         messageRecruit.setOtherUserName(otherUserName);
         messageRecruit.setLatestMessage(latestMessage);
+        messageRecruit.setLatestMessageTime(latestMessageTime);
         return messageRecruitService.Insert(messageRecruit);
     }
     @ResponseBody
     @RequestMapping(value= {"/updateRecruit"}, method={RequestMethod.PUT})
-    public boolean PutUser(@RequestParam("userID") String id,
-                           @RequestParam("otherUserID") String otherUserID,
+    public boolean PutMessageRecruit(@RequestParam("userID") String userID,
+                           @RequestParam("otherID") String otherID,
                            @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                            @RequestParam("otherUserName") String otherUserName,
-                           @RequestParam("latestMessage") String latestMessage) {
+                           @RequestParam("latestMessage") String latestMessage,
+                           @RequestParam("latestMessageTime") String latestMessageTime) {
         MessageRecruit messageRecruit = new MessageRecruit();
-        messageRecruit.setUserID(id);
-        messageRecruit.setOtherUserID(otherUserID);
+        messageRecruit.setUserID(userID);
+        messageRecruit.setOtherID(otherID);
         messageRecruit.setOtherAvatarUrl(otherAvatarUrl);
         messageRecruit.setOtherUserName(otherUserName);
         messageRecruit.setLatestMessage(latestMessage);
+        messageRecruit.setLatestMessageTime(latestMessageTime);
         return messageRecruitService.Update(messageRecruit);
+    }
+    @ResponseBody
+    @RequestMapping(value= {"/deleteRecruit"}, method={RequestMethod.DELETE})
+    public boolean DelMessageRecruit(@RequestParam("ID") Integer ID){
+        return messageRecruitService.Delete(ID);
     }
 }
