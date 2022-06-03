@@ -12,14 +12,22 @@
         select * from deliver where userID = #{userID}
     </select>
 
+    <select id="SelectOne" resultType="com.example.bean.Deliver">
+        select * from deliver where userID = #{userID} and jobID=#{jobID}
+    </select>
+
+    <select id="SelectUser" resultType="com.example.bean.Deliver">
+        select * from deliver where jobID = #{jobID}
+    </select>
+
     <insert id="Insert" parameterType="com.example.bean.Deliver">
-        insert into deliver(userID,jobID)
-        values(#{userID},#{jobID})
+        insert into deliver(userID,jobID,userName)
+        values(#{userID},#{jobID},#{userName})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.Deliver">
         update deliver
-        set jobID=#{jobID}
+        set userID=#{userID},jobID=#{jobID},isAgree=#{isAgree},userName=#{userName}
         where userID=#{userID}
     </update>
 

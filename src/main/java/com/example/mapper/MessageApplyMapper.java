@@ -3,7 +3,6 @@ package com.example.mapper;
 import com.example.bean.MessageApply;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -13,4 +12,5 @@ public interface MessageApplyMapper {
     int Update(MessageApply params);
     int Delete(Integer ID);
     List<MessageApply> Select(String userID);
+    MessageApply SelectOne(String userID,String otherID);
 }

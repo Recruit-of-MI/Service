@@ -35,8 +35,7 @@ public class UserController {
     public boolean PutUser(@RequestParam("userID") String id,
                            @RequestParam("userName") String username,
                            @RequestParam("avatarUrl") String avatarurl) {
-        User user = new User();
-        user.setUserID(id);
+        User user = userService.Select(id);
         user.setUserName(username);
         user.setAvatarUrl(avatarurl);
         return userService.Update(user);

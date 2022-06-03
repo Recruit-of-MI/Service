@@ -1,10 +1,8 @@
 package com.example.mapper;
 
-import com.example.bean.MessageApply;
 import com.example.bean.MessageRecruit;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -14,4 +12,5 @@ public interface MessageRecruitMapper {
     int Update(MessageRecruit params);
     int Delete(Integer ID);
     List<MessageRecruit> Select(String userID);
+    MessageRecruit SelectOne(String userID,String otherID);
 }

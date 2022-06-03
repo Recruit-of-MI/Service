@@ -63,4 +63,17 @@ public class MessageRecruitService {
         }
         return true;
     }
+    public MessageRecruit SelectBYChat(String id, String otherID) {
+        return messageRecruitMapper.SelectOne(id,otherID);
+    }
+    public Boolean UpdateByChat(String userID,String otherID,String avatarUrl,String userName,String content){
+        redisUtil.del(RedisConstant.MESSAGE_RECRUIT_KEY+userID);
+        MessageRecruit messageRecruit = SelectBYChat(userID,otherID);
+        if (messageRecruit==null) return false;
+        messageRecruit.setOtherID(otherID);
+        messageRecruit.setOtherAvatarUrl(avatarUrl);
+        messageRecruit.setOtherUserName(userName);
+        messageRecruit.setLatestMessage(content);
+        return Update(messageRecruit);
+    }
 }

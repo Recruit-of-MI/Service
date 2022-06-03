@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.bean.Job;
+import com.example.bean.JobSpecific;
+import com.example.service.CollectedJobService;
 import com.example.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
 @RequestMapping("/recruit")
 public class JobController {
+    @Resource
+    private CollectedJobService collectedJobService;
+
     @Autowired
     private JobService jobService;
 
@@ -35,8 +41,26 @@ public class JobController {
     }
 
     @ResponseBody
+    @RequestMapping(value= {"/getLatestJob"}, method={RequestMethod.GET})
+    public List<Job> GetLatestJob() {
+        return jobService.SelectAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value= {"/getSubsidyJob"}, method={RequestMethod.GET})
+    public List<Job> GetSubsidyJob() {
+        return jobService.SelectAll();
+    }
+
+    @ResponseBody
     @RequestMapping(value= {"/getUrgentJob"}, method={RequestMethod.GET})
     public List<Job> GetUrgentJob() {
+        return jobService.SelectAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value= {"/getPartJob"}, method={RequestMethod.GET})
+    public List<Job> GetPartJob() {
         return jobService.SelectAll();
     }
 
@@ -47,7 +71,19 @@ public class JobController {
     }
 
     @ResponseBody
-    @RequestMapping(value= {"/getDailyJob"}, method={RequestMethod.GET})
+    @RequestMapping(value= {"/getSecurity"}, method={RequestMethod.GET})
+    public List<Job> GetSecurity() {
+        return jobService.SelectAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value= {"/getTakeOutClerk"}, method={RequestMethod.GET})
+    public List<Job> GetTakeOutClerk() {
+        return jobService.SelectAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value= {"/getDaily"}, method={RequestMethod.GET})
     public List<Job> GetDailyJob() {
         return jobService.SelectAll();
     }
@@ -59,9 +95,14 @@ public class JobController {
     }
 
     @ResponseBody
-    @RequestMapping(value= {"/getSpecificJob"}, method={RequestMethod.GET})
-    public List<Job> GetSpecificJob(@RequestParam("JobID") Integer JobID) {
-        return jobService.SelectAll();
+    @RequestMapping(value= {"/getSpecificJobOfUser"}, method={RequestMethod.GET})
+    public JobSpecific GetSpecificJob(@RequestParam("userID") String userID,
+                                      @RequestParam("JobID") Integer JobID) {
+        Job job=jobService.Select(JobID);
+        JobSpecific jobSpecific=new JobSpecific();
+        jobSpecific.job=job;
+        jobSpecific.isCollect=collectedJobService.SelectSpecific(userID, JobID);
+        return jobSpecific;
     }
 
     @ResponseBody
@@ -72,7 +113,7 @@ public class JobController {
 
     @ResponseBody
     @RequestMapping(value= {"/getSend"}, method={RequestMethod.GET})
-    public List<Job> GetSend(@RequestParam("userID") Integer userID) {
+    public List<Job> GetSend(@RequestParam("userID") String userID) {
         return jobService.SelectAll();
     }
 
@@ -127,7 +168,8 @@ public class JobController {
     }
     @ResponseBody
     @RequestMapping(value= {"/updateJob"}, method={RequestMethod.PUT})
-    public boolean PutJob(@RequestParam("recruitPosition") String recruitPosition,
+    public boolean PutJob( @RequestParam("jobID") Integer jobID,
+                           @RequestParam("recruitPosition") String recruitPosition,
                            @RequestParam("jobTitle") String jobTitle,
                            @RequestParam("maxWages") Integer maxWages,
                            @RequestParam("minWages") Integer minWages,
@@ -149,7 +191,7 @@ public class JobController {
                            @RequestParam("label1") String label1,
                            @RequestParam("label2") String label2,
                            @RequestParam("label3") String label3) {
-        Job job = new Job();
+        Job job = jobService.Select(jobID);
         job.setRecruitPosition(recruitPosition);
         job.setJobTitle(jobTitle);
         job.setMaxWages(maxWages);

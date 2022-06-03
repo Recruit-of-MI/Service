@@ -9,18 +9,12 @@
     </resultMap>
 
     <select id="Select" resultType="com.example.bean.ChatMessage">
-        select * from chatmessage where userID = #{userID},otherID=#{otherID}
+        select * from chatmessage where userID = #{userID} and otherID=#{otherID}
     </select>
 
     <insert id="Insert" parameterType="com.example.bean.ChatMessage">
-        insert into chatmessage(userID,otherID,otherAvatarUrl,contentType,content)
-        values(#{userID},#{otherID},#{otherAvatarUrl},#{contentType},#{content})
+        insert into chatmessage(userID,otherID,otherAvatarUrl,contentType,content,speaker,otherUserName)
+        values(#{userID},#{otherID},#{otherAvatarUrl},#{contentType},#{content},#{speaker},#{otherUserName})
     </insert>
-
-    <update id="Update" parameterType="com.example.bean.ChatMessage">
-        update chatmessage
-        set userID=#{userID},otherID=#{otherID},otherAvatarUrl=#{otherAvatarUrl},contentType=#{contentType},content=#{content}
-        where ID=#{ID}
-    </update>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.bean.Deliver;
+import com.example.bean.User;
 import com.example.config.RedisConstant;
 import com.example.mapper.DeliverMapper;
 import com.example.util.RedisUtil;
@@ -25,8 +26,20 @@ public class DeliverService {
         }
         return delivers;
     }
+    public List<Deliver> SelectUser(Integer jobID) {
+        List<Deliver> delivers=(List<Deliver>) redisUtil.get(RedisConstant.DELIVER_KEY+"job"+jobID);
+        if(CollectionUtils.isEmpty(delivers)){
+            delivers= deliverMapper.SelectUser(jobID);
+            redisUtil.set(RedisConstant.DELIVER_KEY+"job"+jobID,delivers);
+        }
+        return delivers;
+    }
+    public Deliver SelectOne(String id,Integer jobID){
+        return deliverMapper.SelectOne(id, jobID);
+    }
     public Boolean Insert(Deliver params) {
         redisUtil.del(RedisConstant.DELIVER_KEY+params.getUserID());
+        redisUtil.del(RedisConstant.DELIVER_KEY+"job"+params.getJobID());
         try{
             deliverMapper.Insert(params);
             String insertId = params.getUserID();
@@ -40,6 +53,7 @@ public class DeliverService {
     }
     public Boolean Update(Deliver params) {
         redisUtil.del(RedisConstant.DELIVER_KEY+params.getUserID());
+        redisUtil.del(RedisConstant.DELIVER_KEY+"job"+params.getJobID());
         try{
             deliverMapper.Update(params);
             String insertId = params.getUserID();

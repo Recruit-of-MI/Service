@@ -11,4 +11,5 @@ public interface CollectedJobMapper {
     int Insert(CollectedJob params);
     int Update(CollectedJob params);
     List<CollectedJob> Select(String id);
+    CollectedJob SelectSpecific(String userID,Integer jobID);
 }

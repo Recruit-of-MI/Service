@@ -29,7 +29,7 @@ public class ResumeController {
                                    @RequestParam("education") String education,
                                    @RequestParam("workYear") String workYear,
                                    @RequestParam("intentionJob") String intentionJob,
-                                   @RequestParam("exSalaryLow") Integer privacy) {
+                                   @RequestParam("privacy") Integer privacy) {
         Resume resume = new Resume();
         resume.setUserID(userID);
         resume.setRealName(realname);
@@ -51,9 +51,8 @@ public class ResumeController {
                                   @RequestParam("education") String education,
                                   @RequestParam("workYear") String workYear,
                                   @RequestParam("intentionJob") String intentionJob,
-                                  @RequestParam("exSalaryLow") Integer privacy) {
-        Resume resume = new Resume();
-        resume.setUserID(userID);
+                                  @RequestParam("privacy") Integer privacy) {
+        Resume resume = resumeService.Select(userID);
         resume.setRealName(realname);
         resume.setPhoneNum(phonenum);
         resume.setBirthYear(birthYear);

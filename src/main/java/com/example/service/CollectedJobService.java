@@ -17,13 +17,22 @@ public class CollectedJobService {
     @Autowired
     private RedisUtil redisUtil;
 
-    public List<CollectedJob> Select(String id) {
+    public List<CollectedJob> Select(String id){
         List<CollectedJob> collectedJobs=(List<CollectedJob>) redisUtil.get(RedisConstant.COLLECT_KEY+id);
         if(CollectionUtils.isEmpty(collectedJobs)){
             collectedJobs= collectedJobMapper.Select(id);
             redisUtil.set(RedisConstant.COLLECT_KEY+id,collectedJobs);
         }
         return collectedJobs;
+    }
+
+    public Boolean SelectSpecific(String userID,Integer jobID) {
+        CollectedJob collectedJob=(CollectedJob) redisUtil.get(RedisConstant.COLLECT_KEY+userID+jobID);
+        if(collectedJob==null){
+            collectedJob = collectedJobMapper.SelectSpecific(userID,jobID);
+            redisUtil.set(RedisConstant.COLLECT_KEY+userID+jobID,collectedJob);
+        }
+        return collectedJob==null;
     }
     public Boolean Insert(CollectedJob params) {
         redisUtil.del(RedisConstant.COLLECT_KEY+params.getUserID());

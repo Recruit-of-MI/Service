@@ -27,15 +27,14 @@ public class MessageRecruitController {
                             @RequestParam("otherID") String otherID,
                             @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                             @RequestParam("otherUserName") String otherUserName,
-                            @RequestParam("latestMessage") String latestMessage,
-                            @RequestParam("latestMessageTime") String latestMessageTime) {
+                            @RequestParam("latestMessage") String latestMessage) {
+        if (messageRecruitService.SelectBYChat(userID,otherID)!=null) return false;
         MessageRecruit messageRecruit = new MessageRecruit();
         messageRecruit.setUserID(userID);
         messageRecruit.setOtherID(otherID);
         messageRecruit.setOtherAvatarUrl(otherAvatarUrl);
         messageRecruit.setOtherUserName(otherUserName);
         messageRecruit.setLatestMessage(latestMessage);
-        messageRecruit.setLatestMessageTime(latestMessageTime);
         return messageRecruitService.Insert(messageRecruit);
     }
     @ResponseBody
@@ -44,15 +43,13 @@ public class MessageRecruitController {
                            @RequestParam("otherID") String otherID,
                            @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                            @RequestParam("otherUserName") String otherUserName,
-                           @RequestParam("latestMessage") String latestMessage,
-                           @RequestParam("latestMessageTime") String latestMessageTime) {
+                           @RequestParam("latestMessage") String latestMessage) {
         MessageRecruit messageRecruit = new MessageRecruit();
         messageRecruit.setUserID(userID);
         messageRecruit.setOtherID(otherID);
         messageRecruit.setOtherAvatarUrl(otherAvatarUrl);
         messageRecruit.setOtherUserName(otherUserName);
         messageRecruit.setLatestMessage(latestMessage);
-        messageRecruit.setLatestMessageTime(latestMessageTime);
         return messageRecruitService.Update(messageRecruit);
     }
     @ResponseBody

@@ -12,19 +12,23 @@
         select * from messagerecruit where userID = #{userID}
     </select>
 
+    <select id="SelectOne" resultType="com.example.bean.MessageRecruit">
+        select * from messagerecruit where userID = #{userID} and otherID=#{otherID}
+    </select>
+
     <delete id="Delete">
         DELETE from messagerecruit where ID = #{ID};
     </delete>
 
     <insert id="Insert" parameterType="com.example.bean.MessageRecruit">
-        insert into messagerecruit (userID,otherID,otherAvatarUrl,otherUserName,latestMessage,latestMessageTime)
-        values(#{userID},#{otherID},#{otherAvatarUrl},#{otherUserName},#{latestMessage},#{latestMessageTime})
+        insert into messagerecruit (userID,otherID,otherAvatarUrl,otherUserName,latestMessage)
+        values(#{userID},#{otherID},#{otherAvatarUrl},#{otherUserName},#{latestMessage})
     </insert>
 
     <update id="Update" parameterType="com.example.bean.MessageRecruit">
         update messagerecruit
         set otherID=#{otherID},otherAvatarUrl=#{otherAvatarUrl},otherUserName=#{otherUserName},
-        latestMessage=#{latestMessage},latestMessageTime=#{latestMessageTime}
+        latestMessage=#{latestMessage}
         where userID=#{userID};
     </update>
 

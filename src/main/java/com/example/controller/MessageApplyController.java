@@ -27,15 +27,14 @@ public class MessageApplyController {
                             @RequestParam("otherID") String otherID,
                             @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                             @RequestParam("otherUserName") String otherUserName,
-                            @RequestParam("latestMessage") String latestMessage,
-                            @RequestParam("latestMessageTime") String latestMessageTime) {
+                            @RequestParam("latestMessage") String latestMessage) {
+        if (messageApplyService.SelectBYChat(userID,otherID)!=null) return false;
         MessageApply messageApply = new MessageApply();
         messageApply.setUserID(userID);
         messageApply.setOtherID(otherID);
         messageApply.setOtherAvatarUrl(otherAvatarUrl);
         messageApply.setOtherUserName(otherUserName);
         messageApply.setLatestMessage(latestMessage);
-        messageApply.setLatestMessageTime(latestMessageTime);
         return messageApplyService.Insert(messageApply);
     }
     @ResponseBody
@@ -44,15 +43,13 @@ public class MessageApplyController {
                            @RequestParam("otherID") String otherID,
                            @RequestParam("otherAvatarUrl") String otherAvatarUrl,
                            @RequestParam("otherUserName") String otherUserName,
-                           @RequestParam("latestMessage") String latestMessage,
-                           @RequestParam("latestMessageTime") String latestMessageTime) {
+                           @RequestParam("latestMessage") String latestMessage) {
         MessageApply messageApply = new MessageApply();
         messageApply.setUserID(userID);
         messageApply.setOtherID(otherID);
         messageApply.setOtherAvatarUrl(otherAvatarUrl);
         messageApply.setOtherUserName(otherUserName);
         messageApply.setLatestMessage(latestMessage);
-        messageApply.setLatestMessageTime(latestMessageTime);
         return messageApplyService.Update(messageApply);
     }
     @ResponseBody

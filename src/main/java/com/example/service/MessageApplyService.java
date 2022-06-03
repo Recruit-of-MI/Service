@@ -26,6 +26,7 @@ public class MessageApplyService {
         return messageApplys;
     }
 
+
     public Boolean Insert(MessageApply params) {
         redisUtil.del(RedisConstant.MESSAGE_APPLY_KEY+params.getUserID());
         try{
@@ -62,5 +63,18 @@ public class MessageApplyService {
             return false;
         }
         return true;
+    }
+    public MessageApply SelectBYChat(String id,String otherID) {
+        return messageApplyMapper.SelectOne(id,otherID);
+    }
+    public Boolean UpdateByChat(String userID,String otherID,String avatarUrl,String userName,String content){
+        redisUtil.del(RedisConstant.MESSAGE_APPLY_KEY+userID);
+        MessageApply messageApply = SelectBYChat(userID,otherID);
+        if (messageApply==null) return false;
+        messageApply.setOtherID(otherID);
+        messageApply.setOtherAvatarUrl(avatarUrl);
+        messageApply.setOtherUserName(userName);
+        messageApply.setLatestMessage(content);
+        return Update(messageApply);
     }
 }
