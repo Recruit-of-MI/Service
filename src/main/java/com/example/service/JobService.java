@@ -7,6 +7,7 @@ import com.example.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,11 +19,38 @@ public class JobService {
     private RedisUtil redisUtil;
 
     public List<Job> SelectAll() {
-        List<Job> jobs=(List<Job>) redisUtil.get(RedisConstant.JOB_KEY);
-        if(CollectionUtils.isEmpty(jobs)){
-            jobs= jobMapper.SelectAll();
-            redisUtil.set(RedisConstant.JOB_KEY,jobs);
-        }
+        List<Job> jobs=jobMapper.SelectAll();
+        Collections.shuffle(jobs);
+        return jobs;
+    }
+
+    public List<Job> SelectLatest() {
+        List<Job> jobs=jobMapper.SelectAll();
+        Collections.reverse(jobs);
+        return jobs;
+    }
+
+    public List<Job> SelectHighPay() {
+        List<Job> jobs=jobMapper.SelectHighPay();
+        Collections.reverse(jobs);
+        return jobs;
+    }
+
+    public List<Job> SelectSend(String userID) {
+        List<Job> jobs=jobMapper.SelectSend(userID);
+        Collections.reverse(jobs);
+        return jobs;
+    }
+
+    public List<Job> SelectNearLatest(String region) {
+        List<Job> jobs=jobMapper.SelectRegion(region);
+        Collections.reverse(jobs);
+        return jobs;
+    }
+
+    public List<Job> SelectIncludeKey(String key) {
+        List<Job> jobs=jobMapper.SelectIncludeKey(key);
+        Collections.shuffle(jobs);
         return jobs;
     }
 

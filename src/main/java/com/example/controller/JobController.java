@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/recruit")
@@ -30,68 +31,68 @@ public class JobController {
 
     @ResponseBody
     @RequestMapping(value= {"/searchJob"}, method={RequestMethod.GET})
-    public List<Job> GetJob(@RequestParam("jobKeyWord") String jobKeyWord) {
-        return jobService.SelectAll();
+    public List<Job> GetJob(@RequestParam("jobKeyWord") String key) {
+        return jobService.SelectIncludeKey("%"+key+"%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getHotJob"}, method={RequestMethod.GET})
     public List<Job> GetHotJob(@RequestParam("region") String region) {
-        return jobService.SelectAll();
+        return jobService.SelectNearLatest("%"+region+"%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getLatestJob"}, method={RequestMethod.GET})
     public List<Job> GetLatestJob() {
-        return jobService.SelectAll();
+        return jobService.SelectLatest();
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getSubsidyJob"}, method={RequestMethod.GET})
     public List<Job> GetSubsidyJob() {
-        return jobService.SelectAll();
+        return jobService.SelectIncludeKey("%补%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getUrgentJob"}, method={RequestMethod.GET})
     public List<Job> GetUrgentJob() {
-        return jobService.SelectAll();
+        return jobService.SelectIncludeKey("%急%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getPartJob"}, method={RequestMethod.GET})
     public List<Job> GetPartJob() {
-        return jobService.SelectAll();
+        return jobService.SelectIncludeKey("%兼职%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getDriver"}, method={RequestMethod.GET})
     public List<Job> GetDriver() {
-        return jobService.SelectAll();
+        return jobService.SelectIncludeKey("%司机%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getSecurity"}, method={RequestMethod.GET})
     public List<Job> GetSecurity() {
-        return jobService.SelectAll();
+        return jobService.SelectIncludeKey("%保安%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getTakeOutClerk"}, method={RequestMethod.GET})
     public List<Job> GetTakeOutClerk() {
-        return jobService.SelectAll();
+        return jobService.SelectIncludeKey("%外卖%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getDaily"}, method={RequestMethod.GET})
     public List<Job> GetDailyJob() {
-        return jobService.SelectAll();
+        return jobService.SelectIncludeKey("%日结%");
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getHighPayJob"}, method={RequestMethod.GET})
     public List<Job> GetHighPayJob() {
-        return jobService.SelectAll();
+        return jobService.SelectHighPay();
     }
 
     @ResponseBody
@@ -101,20 +102,20 @@ public class JobController {
         Job job=jobService.Select(JobID);
         JobSpecific jobSpecific=new JobSpecific();
         jobSpecific.job=job;
-        jobSpecific.isCollect=collectedJobService.SelectSpecific(userID, JobID);
+        jobSpecific.isCollect=collectedJobService.SelectSpecific(userID, JobID)!=null;
         return jobSpecific;
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getFamousJob"}, method={RequestMethod.GET})
     public List<Job> GetFamousJob() {
-        return jobService.SelectAll();
+        return jobService.SelectLatest();
     }
 
     @ResponseBody
     @RequestMapping(value= {"/getSend"}, method={RequestMethod.GET})
     public List<Job> GetSend(@RequestParam("userID") String userID) {
-        return jobService.SelectAll();
+        return jobService.SelectSend(userID);
     }
 
     @ResponseBody
@@ -156,14 +157,14 @@ public class JobController {
         job.setUserID(userID);
         job.setPublisherName(publisherName);
         job.setPublisherAvatarUrl(publisherAvatarUrl);
-        if(welfare1!=null) job.setWelfare1(welfare1);
-        if(welfare2!=null) job.setWelfare1(welfare2);
-        if(welfare3!=null) job.setWelfare1(welfare3);
-        if(welfare4!=null) job.setWelfare1(welfare4);
-        if(welfare5!=null) job.setWelfare1(welfare5);
-        if(label1!=null) job.setWelfare1(label1);
-        if(label2!=null) job.setWelfare1(label2);
-        if(label3!=null) job.setWelfare1(label3);
+        if(!Objects.equals(welfare1, "")) job.setWelfare1(welfare1);
+        if(!Objects.equals(welfare2, "")) job.setWelfare2(welfare2);
+        if(!Objects.equals(welfare3, "")) job.setWelfare3(welfare3);
+        if(!Objects.equals(welfare4, "")) job.setWelfare4(welfare4);
+        if(!Objects.equals(welfare5, "")) job.setWelfare5(welfare5);
+        if(!Objects.equals(label1, "")) job.setLabel1(label1);
+        if(!Objects.equals(label2, "")) job.setLabel2(label2);
+        if(!Objects.equals(label3, "")) job.setLabel3(label3);
         return jobService.Insert(job);
     }
     @ResponseBody
@@ -206,14 +207,14 @@ public class JobController {
         job.setUserID(userID);
         job.setPublisherName(publisherName);
         job.setPublisherAvatarUrl(publisherAvatarUrl);
-        if(welfare1!=null) job.setWelfare1(welfare1);
-        if(welfare2!=null) job.setWelfare1(welfare2);
-        if(welfare3!=null) job.setWelfare1(welfare3);
-        if(welfare4!=null) job.setWelfare1(welfare4);
-        if(welfare5!=null) job.setWelfare1(welfare5);
-        if(label1!=null) job.setWelfare1(label1);
-        if(label2!=null) job.setWelfare1(label2);
-        if(label3!=null) job.setWelfare1(label3);
+        if(!Objects.equals(welfare1, "")) job.setWelfare1(welfare1);
+        if(!Objects.equals(welfare2, "")) job.setWelfare2(welfare2);
+        if(!Objects.equals(welfare3, "")) job.setWelfare3(welfare3);
+        if(!Objects.equals(welfare4, "")) job.setWelfare4(welfare4);
+        if(!Objects.equals(welfare5, "")) job.setWelfare5(welfare5);
+        if(!Objects.equals(label1, "")) job.setLabel1(label1);
+        if(!Objects.equals(label2, "")) job.setLabel2(label2);
+        if(!Objects.equals(label3, "")) job.setLabel3(label3);
         return jobService.Update(job);
     }
 }

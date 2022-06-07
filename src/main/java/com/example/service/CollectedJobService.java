@@ -26,18 +26,21 @@ public class CollectedJobService {
         return collectedJobs;
     }
 
-    public Boolean SelectSpecific(String userID,Integer jobID) {
-        CollectedJob collectedJob=(CollectedJob) redisUtil.get(RedisConstant.COLLECT_KEY+userID+jobID);
-        if(collectedJob==null){
-            collectedJob = collectedJobMapper.SelectSpecific(userID,jobID);
-            redisUtil.set(RedisConstant.COLLECT_KEY+userID+jobID,collectedJob);
-        }
-        return collectedJob==null;
+    public CollectedJob SelectSpecific(String userID, Integer jobID) {
+        CollectedJob collectedJob=collectedJobMapper.SelectSpecific(userID,jobID);
+        return collectedJob;
     }
     public Boolean Insert(CollectedJob params) {
         redisUtil.del(RedisConstant.COLLECT_KEY+params.getUserID());
         try{
-            collectedJobMapper.Insert(params);
+            CollectedJob collectedJob=SelectSpecific(params.getUserID(),params.getJobID());
+            if (collectedJob==null) collectedJobMapper.Insert(params);
+            else {
+                if (Delete(collectedJob)){
+                    collectedJobMapper.Insert(params);
+                }
+                else return false;
+            }
             String insertId = params.getUserID();
             System.out.println("插入数据的ID: " + insertId);
         }
@@ -53,6 +56,19 @@ public class CollectedJobService {
             collectedJobMapper.Update(params);
             String insertId = params.getUserID();
             System.out.println("更新数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public Boolean Delete(CollectedJob params) {
+        redisUtil.del(RedisConstant.COLLECT_KEY+params.getUserID());
+        try{
+            collectedJobMapper.Delete(params);
+            String insertId = params.getUserID();
+            System.out.println("删除数据的ID: " + insertId);
         }
         catch (Exception e){
             e.printStackTrace();

@@ -12,6 +12,10 @@
         select * from browsed where userID = #{userID}
     </select>
 
+    <select id="SelectOne" resultType="com.example.bean.Browsed">
+        select * from browsed where userID = #{userID} and jobID=#{jobID}
+    </select>
+
     <insert id="Insert" parameterType="com.example.bean.Browsed">
         insert into browsed(userID,jobID)
         values(#{userID},#{jobID})
@@ -21,6 +25,10 @@
         update browsed
         set jobID=#{jobID}
         where userID=#{userID}
+    </update>
+
+    <update id="Delete">
+        delete from browsed where ID = #{ID};
     </update>
 
 </mapper>

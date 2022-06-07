@@ -16,6 +16,24 @@
         select * from job where jobID = #{jobID}
     </select>
 
+    <select id="SelectSend" resultType="com.example.bean.Job">
+        select * from job where userID = #{userID}
+    </select>
+
+    <select id="SelectRegion" resultType="com.example.bean.Job">
+        select * from job where region like #{region} or specificLocation like #{region}
+    </select>
+
+    <select id="SelectHighPay" resultType="com.example.bean.Job">
+        select * from job where maxWages > 10000
+    </select>
+
+    <select id="SelectIncludeKey" resultType="com.example.bean.Job">
+        select * from job where recruitPosition like #{key} or jobTitle like #{key} or jobDescription like #{key}
+        or welfare1 like #{key} or welfare2 like #{key} or welfare3 like #{key} or welfare4 like #{key}
+        or welfare5 like #{key} or label1 like #{key} or label2 like #{key} or label3 like #{key}
+        or mode like #{key}
+    </select>
 
     <insert id="Insert" parameterType="com.example.bean.Job">
         insert into job(recruitPosition,jobTitle,maxWages,minWages,region,specificLocation,corporateName,minEducation,mode,jobDescription,recruitNum,

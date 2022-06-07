@@ -25,10 +25,22 @@ public class BrowsedService {
         }
         return browseds;
     }
+    public Browsed SelectOne(String userID,Integer jobID){
+        Browsed browsed=browsedMapper.SelectOne(userID, jobID);
+        return browsed;
+    }
+
     public Boolean Insert(Browsed params) {
         redisUtil.del(RedisConstant.BROSE_KEY+params.getUserID());
         try{
-            browsedMapper.Insert(params);
+            Browsed browsed=SelectOne(params.getUserID(),params.getJobID());
+            if(browsed==null) browsedMapper.Insert(params);
+            else {
+                if (Delete(browsed)){
+                    browsedMapper.Insert(params);
+                }
+                else return false;
+            }
             String insertId = params.getUserID();
             System.out.println("插入数据的ID: " + insertId);
         }
@@ -44,6 +56,19 @@ public class BrowsedService {
             browsedMapper.Update(params);
             String insertId = params.getUserID();
             System.out.println("更新数据的ID: " + insertId);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public Boolean Delete(Browsed params) {
+        redisUtil.del(RedisConstant.BROSE_KEY+params.getUserID());
+        try{
+            browsedMapper.Delete(params);
+            String insertId = params.getUserID();
+            System.out.println("删除数据的ID: " + insertId);
         }
         catch (Exception e){
             e.printStackTrace();

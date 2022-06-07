@@ -28,4 +28,8 @@
         where userID=#{userID}
     </update>
 
+    <update id="Delete">
+        delete from collectedjob where ID = #{ID};
+    </update>
+
 </mapper>

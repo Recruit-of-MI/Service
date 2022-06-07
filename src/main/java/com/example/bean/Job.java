@@ -27,4 +27,5 @@ public class Job{
     private String label1;
     private String label2;
     private String label3;
+    private String createTime;
 }
